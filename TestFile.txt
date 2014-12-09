@@ -1,1 +1,2 @@
 Hello world !
+Today, I study GIT command lines.
