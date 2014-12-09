@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Datapool xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\XSD\Datapool.xsd" Name="TUNER">
+    <Version Schema="1.0" Nummer="" Shell="1.06.0222" User="msa5kor"/>
+    <Element Name="STATION" Size="13" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Element Name="BAND" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="GUI_DPTUNER__STATION_NAME">
+            <Description>This Data Pool holds the value of the current station band</Description>
+        </Element>
+        <Element Name="NAME" Size="tChar" defaultVal="&quot;ABC&quot;" dpType="dptChar" Persist="False" Repeat="129" Event="GUI_DPTUNER__STATION_NAME">
+            <Description>This DataPool holds the current station name</Description>
+        </Element>
+        <Element Name="FREQVAL" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="GUI_STATION_FREQVAL">
+            <Description>This DataPool holds the current frequency value</Description>
+        </Element>
+        <Element Name="BANDLEVEL" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>This DataPool holds the current band level</Description>
+        </Element>
+        <Element Name="TP_STATUS" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_DPTUNER__TATP">
+            <Description>Indicates whethera station supports TP</Description>
+        </Element>
+        <Element Name="FLAG" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_IS_PS_NAME_AVAILABLE">
+            <Description>is true if a PS is available</Description>
+        </Element>
+        <Element Name="TMC_STATUS" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CurrentStationListIndex" Size="tU8" defaultVal="0xFF" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_DPTUNER__STATION_CURRENTSTATIONLISTINDEX">
+            <Description>stores the current Index of the actual station when in StationList</Description>
+        </Element>
+        <Element Name="FM_FREQVAL" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="GUI_STATION_FREQVAL">
+            <Description>FM frequency</Description>
+        </Element>
+        <Element Name="AM_FREQVAL" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="GUI_STATION_FREQVAL">
+            <Description>AM Frequency</Description>
+        </Element>
+        <Element Name="HD_INFO_BITS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_HD_INFO">
+            <Description>Datapool to store the HD station info bits</Description>
+        </Element>
+        <Element Name="ACTIVE_HD_AUD_PRGM" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_HD_INFO">
+            <Description>Datapool to store the active HD audio program number</Description>
+        </Element>
+        <Element Name="AVAIL_HD_AUDPRGMS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_HD_INFO">
+            <Description>Datapool to store available HD Audio programs</Description>
+        </Element>
+    </Element>
+    <Element Name="TUN" Size="1" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Element Name="MODE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_DPTUNER__TUN_MODE">
+            <Description>This DataPool holds the diferent modes of tuner( SCAN,NORMAL,etc)</Description>
+        </Element>
+    </Element>
+    <Element Name="FEATURE_PSNAME" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>It indicates the current program station name</Description>
+    </Element>
+    <Element Name="FEATURE" Size="24" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Element Name="HIGHCUT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_SETUP_HIGHCUT">
+            <Description>Indicates whether Hicut is enabled or disabled</Description>
+        </Element>
+        <Element Name="TESTMODE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates whether the test mode is enabled or disabled</Description>
+        </Element>
+        <Element Name="SHARX" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="HMI_GET_SETUP_SHARX">
+            <Description>Indicates whether Sharx is enabled or disabled</Description>
+        </Element>
+        <Element Name="FMSTEP" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates whether FMSTEP is enabled or disabled</Description>
+        </Element>
+        <Element Name="TA" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_DPTUNER__TATP">
+            <Description>This Data Pool is used to indicate whether TA is ON/OFF</Description>
+        </Element>
+        <Element Name="AF" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="HMI_TOGGLE_AF_VALUE">
+            <Description>This Data Pool is used to indicate whether AF is ON/OFF</Description>
+        </Element>
+        <Element Name="REG" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="HMI_DPTUNER__FEATURE_REG">
+            <Description>This Data Pool is used to indicate whether REG is ON/OFF</Description>
+        </Element>
+        <Element Name="PISTEP" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="BGTUNER" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="HMI_TOGGLE_FREEZE_BG_TUNER">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="BGTUNAUD" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="HMI_GET_ACTIVE_TUNER">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="MONO" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="RTEXT" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TMC" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SEEKSENSE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="REG_AUTO" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_DPTUNER__FEATURE_REG_AUTO">
+            <Description>Regional auto ON nd OFF(this is for test mode)</Description>
+        </Element>
+        <Element Name="SHARX_LEVEL" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_SETUP_SHARX">
+            <Description>for Engg mode sharx setting values</Description>
+        </Element>
+        <Element Name="FMSEEK" Size="tBool" defaultVal="true" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>For interactive FMSEEK TEST</Description>
+        </Element>
+        <Element Name="DDA" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="HMI_TOGGLE_DDA_VALUE">
+            <Description>Indicates whether DDA is on/off</Description>
+        </Element>
+        <Element Name="MEASUREMODE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="HMI_DPTUNER__FEATURE_MEASUREMODE">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CALIBRATIONDATA_FM_TUNER_0" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="HMI_DPTUNER__FEATURE_CALIBRATIONDATA">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CALIBRATIONDATA_FM_TUNER_1" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="HMI_DPTUNER__FEATURE_CALIBRATIONDATA">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CALIBRATIONDATA_FM_TUNER_2" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="HMI_DPTUNER__FEATURE_CALIBRATIONDATA">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CALIBRATIONDATA_FM_TUNER_3" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="HMI_DPTUNER__FEATURE_CALIBRATIONDATA">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CALIBRATIONDATA_AM" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="HMI_DPTUNER__FEATURE_CALIBRATIONDATA">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+    </Element>
+    <Element Name="TESTMODE" Size="96" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Element Name="FIELDSTRENGTH" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TUNER_FS">
+            <Description>This Data Pool is used to indicate the value of FIELDSTRENGTH</Description>
+        </Element>
+        <Element Name="MULTIPATH" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>This Data Pool is used to indicate the value of MULTIPATH</Description>
+        </Element>
+        <Element Name="NEIGHBOUR" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>This Data Pool is used to indicate the value of adjacent channel interference</Description>
+        </Element>
+        <Element Name="RDSQUALITY" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>This Data Pool is used to indicate the value of RDSQUALITY</Description>
+        </Element>
+        <Element Name="AFLISTLENGTH" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>This Data Pool is used to indicate the value of AFLISTLENGTH</Description>
+        </Element>
+        <Element Name="TMCCOUNT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>This Data Pool is used to indicate the value of TMCCOUNT</Description>
+        </Element>
+        <Element Name="HICUT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>This Data Pool is used to indicate the value of HICUT</Description>
+        </Element>
+        <Element Name="SHARX" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>This Data Pool is used to indicate the value of SHARX</Description>
+        </Element>
+        <Element Name="RDSERRORS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="MONO_STEREO" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_MONO_STEREO_STATUS">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="MUSIC_SPEECH" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="FREQVAL" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PSNAME" Size="tChar" defaultVal="&quot;ABC&quot;" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="MODE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PSNAME_BG" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="DUMMY" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="HMI_DTSM_PERFORMANCE">
+            <Description>DUMMY TO TRIGGER MONITOR SCREEN UPDATE IN DTSM</Description>
+        </Element>
+        <Element Name="RADIO_ANTENNA_STATUS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_SYSTEM_STATUS">
+            <Description>Radio Antenna Status</Description>
+        </Element>
+        <Element Name="RADIO_DAB_ANTENNA_STATUS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_SYSTEM_STATUS">
+            <Description>Radio DAB Antenna Status</Description>
+        </Element>
+        <Element Name="RADIO_ANTENNA_SELF_TEST" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_SYSTEM_SELF_TEST">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="RADIO_DAB_ANTENNA_SELF_TEST" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_SYSTEM_SELF_TEST">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TP_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TP_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TP_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TP_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="FREQVAL_TUNER_0" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="FREQVAL_TUNER_1" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="FREQVAL_TUNER_2" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="FREQVAL_TUNER_3" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="FIELDSTRENGTH_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TUNER_FS">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="FIELDSTRENGTH_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TUNER_FS">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="FIELDSTRENGTH_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TUNER_FS">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="FIELDSTRENGTH_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TUNER_FS">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TA_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TA_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TA_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TA_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SHARX_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SHARX_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SHARX_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SHARX_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HICUT_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HICUT_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HICUT_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HICUT_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="NEIGHBOUR_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="NEIGHBOUR_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="NEIGHBOUR_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="NEIGHBOUR_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="RDSERRORS_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="RDSERRORS_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="RDSERRORS_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="RDSERRORS_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="MULTIPATH_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="MULTIPATH_TUNER_1" Size="tS8" defaultVal="0" dpType="dptS8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="MULTIPATH_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="MULTIPATH_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PI_TUNER_0" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PI_TUNER_1" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PI_TUNER_2" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PI_TUNER_3" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HUB_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HUB_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HUB_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HUB_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="QUALITY_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="QUALITY_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="QUALITY_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="QUALITY_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="BAND_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="BAND_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="BAND_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="BAND_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="DDA_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="DDA_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="DDA_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="DDA_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="AFLISTLENGTH_TUNER_0" Size="tS8" defaultVal="0" dpType="dptS8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="AFLISTLENGTH_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="AFLISTLENGTH_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="AFLISTLENGTH_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CHANNELSEPERATION_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CHANNELSEPERATION_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CHANNELSEPERATION_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="CHANNELSEPERATION_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TMCCOUNT_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TMCCOUNT_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TMCCOUNT_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TMCCOUNT_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="AUDIBLETUNER_TUNER_0" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="AUDIBLETUNER_TUNER_1" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="AUDIBLETUNER_TUNER_2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="AUDIBLETUNER_TUNER_3" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PS_TUNER_0" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PS_TUNER_1" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PS_TUNER_2" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="PS_TUNER_3" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+    </Element>
+	<Element Name="TESTMODE_HD" Size="3" dpType="dptStruct" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Element Name="CALL_SIGN" Size="bpstl::string" defaultVal="&quot;&quot;" dpType="dpbpstl::string" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+            <Description>This DP is used to indicate HD Call sign on the station</Description>
+        </Element>
+		<Element Name="PRG_ID" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+			<Description>HD station ID</Description>
+		</Element>
+		<Element Name="CD_NO" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+			<Description>CD number</Description>
+		</Element>
+    </Element>
+    <Element Name="TA" Size="2" dpType="dptStruct" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Element Name="STATUS" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_DPTUNER__FOR_XML_RADIO_ACTIVE_STATION_PS">
+            <Description>This DP is used to indicate Active TA on the station</Description>
+        </Element>
+        <Element Name="PLAYING" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_DPTUNER__TA_PLAYING">
+            <Description>This DP is used to indicate Active TA being really played, as it can be stopped by the user</Description>
+        </Element>
+    </Element>
+    <Element Name="STATICLIST" Size="17" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>structure to hold the preset freq/name</Description>
+        <Element Name="ELEMENT_NUM" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>holds current preset number</Description>
+        </Element>
+        <Element Name="ELEMENT1_FLAG" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates whether preset element holds the station name or frequency</Description>
+        </Element>
+        <Element Name="ELEMENT1_PSNAME" Size="tChar" defaultVal="&quot;ABC&quot;" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Holds current station name</Description>
+        </Element>
+        <Element Name="ELEMENT1_FREQ" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="ELEMENT2_PSNAME" Size="tChar" defaultVal="&quot;ABC&quot;" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Holds PSName of second preset button</Description>
+        </Element>
+        <Element Name="ELEMENT2_FREQ" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Holds the freequency of second preset button</Description>
+        </Element>
+        <Element Name="ELEMENT2_FLAG" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates whether preset element holds the station name or frequency</Description>
+        </Element>
+        <Element Name="ELEMENT3_PSNAME" Size="tChar" defaultVal="&quot;ABC&quot;" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Holds PSName of third preset button</Description>
+        </Element>
+        <Element Name="ELEMENT3_FREQ" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Holds Freq of third preset button</Description>
+        </Element>
+        <Element Name="ELEMENT3_FLAG" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates whether preset element holds the station name or frequency</Description>
+        </Element>
+        <Element Name="ELEMENT4_PSNAME" Size="tChar" defaultVal="&quot;ABC&quot;" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Holds PSName of fourth preset button</Description>
+        </Element>
+        <Element Name="ELEMENT4_FREQ" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Holds freq of fourth preset button</Description>
+        </Element>
+        <Element Name="ELEMENT4_FLAG" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates whether preset element holds the station name or frequency</Description>
+        </Element>
+        <Element Name="ELEMENT5_PSNAME" Size="tChar" defaultVal="&quot;ABC&quot;" dpType="dptChar" Persist="False" Repeat="33" Event="0XFFFFFFFF">
+            <Description>Holds PSName of FIFTH preset button</Description>
+        </Element>
+        <Element Name="ELEMENT5_FREQ" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Holds FREQ of FIFTH preset button</Description>
+        </Element>
+        <Element Name="ELEMENT5_FLAG" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates whether preset element holds the station name or frequency</Description>
+        </Element>
+        <Element Name="UPDATED" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>as soon as all presets are updated this datapool is made true</Description>
+        </Element>
+    </Element>
+    <ListElement Name="FMLIST" dpType="dptList" NumberOfCols="3" NumberOfRows="6" ListWindow="ACTIVE" ListWindowCols="3" ListWindowRows="6" dynLen="false">
+        <Description>holds number of elements</Description>
+        <Column Name="Col" BaseType="tChar" defaultVal="&quot;ABC&quot;" dpType="dptChar" ElementSize="33">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Column>
+        <Column Name="Col2" BaseType="tU16" defaultVal="0x0000" dpType="dptU16" ElementSize="1">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Column>
+        <Column Name="Col3" BaseType="tChar" defaultVal="&quot;ABC&quot;" dpType="dptChar" ElementSize="6">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Column>
+    </ListElement>
+    <Element Name="LIST" Size="6" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>HOLDS  ALL THE DATAPOOLS IDS RELATED TO FMLIST</Description>
+        <Element Name="TOTALELEMENTS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>holds total number of elements in FMList</Description>
+        </Element>
+        <Element Name="LISTUPDATE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>indicates wheather the list is updated or not</Description>
+        </Element>
+        <Element Name="ELEMENTINDEX" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>indicates which button has been pressed</Description>
+        </Element>
+        <Element Name="ELEM1_TPSTATUS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates the TP status of first element</Description>
+        </Element>
+        <Element Name="SELECTED_INDEX" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates which list element has been selected by the user</Description>
+        </Element>
+        <Element Name="LOADING_INDEX" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+    </Element>
+    <Element Name="DIRECT" Size="1" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>holds freq</Description>
+        <Element Name="FREQUENCY" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>HOLDS THE FREQ VALUE</Description>
+        </Element>
+    </Element>
+    <Element Name="VRTUNER" Size="1" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>For VR support</Description>
+        <Element Name="STATUS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF"/>
+    </Element>
+    <Element Name="ALTFREQ_NUM" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TUNER_AF_LIST_COUNT">
+        <Description>Number of Alternative Frequencies</Description>
+    </Element>
+    <Element Name="ALTFREQ_INDEX" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Index in the List</Description>
+    </Element>
+    <Element Name="TMC_ELEM_NUM" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TMC_STATION">
+        <Description>Number of List Elemnts</Description>
+    </Element>
+    <Element Name="TMC_INDEX" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>List Index</Description>
+    </Element>
+    <Element Name="TMC_PI" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="HMI_GET_TMC_DETAILS">
+        <Description>PI Code</Description>
+    </Element>
+    <Element Name="TMC_PS" Size="tChar" defaultVal="&quot;A&quot;" dpType="dptChar" Persist="False" Repeat="33" Event="HMI_GET_TMC_DETAILS">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="TMC_COUNTRY_CODE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TMC_DETAILS">
+        <Description>Country Code</Description>
+    </Element>
+    <Element Name="TMC_SER_ID" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TMC_DETAILS">
+        <Description>Service ID</Description>
+    </Element>
+    <Element Name="TMC_LOC_TAB_NUM" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TMC_DETAILS">
+        <Description>Location Table Number</Description>
+    </Element>
+    <Element Name="TMC_RECP_QUAL" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TMC_DETAILS">
+        <Description>Reception Quality</Description>
+    </Element>
+    <Element Name="AFLIST_TRACK" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="MODE_SETUP" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="MANUALMODE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_DPTUNER__MANUALMODE">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="RDS" Size="2" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>keeps the elements: RadioText;RadioTextState  for DAB and FM</Description>
+        <Element Name="FM_RadioText" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="257" Event="GUI_DPTUNER__RDS_RADIOTEXT">
+            <Description>keeps the string for FM RadioText (max 64 characters)</Description>
+        </Element>
+        <Element Name="FM_RadioTextState" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_DPTUNER__RDS_FM_RADIOTEXTSTATE">
+            <Description>Value   =  0,  Meaning  = waiting for radio text    Value   =  1,  Meaning  = radio text available</Description>
+        </Element>
+    </Element>
+    <Element Name="SEEKMODE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="GUI_DPTUNER__SEEKMODE">
+        <Description>Seek in stationlist or presetlist, deafult is stationlist (0)</Description>
+    </Element>
+    <Element Name="TESTMODE_ACTIVE_TUNER" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_ACTIVE_TUNER">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="DAB_SERVICEINFO" Size="1" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>the entries of the information received with message FID_DAB_G_ACTIVE_SERVICE_INFO will be stored here</Description>
+        <Element Name="ServiceLabel" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="65" Event="0XFFFFFFFF">
+            <Description>saves the string of the current service</Description>
+        </Element>
+    </Element>
+    <Element Name="TMC_LAST_MSG_TIME_HOUR" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TMC_LAST_MSG_DATE_TIME">
+        <Description>Holds Hour value of Last TMC Message</Description>
+    </Element>
+    <Element Name="TMC_LAST_MSG_TIME_MIN" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TMC_LAST_MSG_DATE_TIME">
+        <Description>Holds Minute value of Last TMC Message</Description>
+    </Element>
+    <Element Name="TMC_LAST_MSG_DATE_YEAR" Size="tS16" defaultVal="0x0000" dpType="dptS16" Persist="False" Repeat="1" Event="HMI_GET_TMC_LAST_MSG_DATE_TIME">
+        <Description>Holds year value of last TMC Message</Description>
+    </Element>
+    <Element Name="TMC_LAST_MSG_DATE_MONTH" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TMC_LAST_MSG_DATE_TIME">
+        <Description>Holds month value of last TMC message.</Description>
+    </Element>
+    <Element Name="TMC_LAST_MSG_DATE_DAY" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TMC_LAST_MSG_DATE_TIME">
+        <Description>Holds day value of Last TMC message</Description>
+    </Element>
+    <Element Name="FMLISTCOUNT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_DPTUNER__FMLISTCOUNT">
+        <Description>nr of items in the fm station list</Description>
+    </Element>
+    <Element Name="MSG__TUNER_DATA" Size="1" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>to store infos sent via FID_G_TUNER_DATA</Description>
+        <Element Name="BAND" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+            <Description>the band-info will be stored here</Description>
+        </Element>
+    </Element>
+    <Element Name="ACTIVE_LIST" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Indicates the active list in radio gui. 0 = presetlist, 1 = fm stationlist, 2 = fm stationlist is diaplayed</Description>
+    </Element>
+    <Element Name="FOR_XML" Size="10" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>entries that are saved for XML</Description>
+        <Element Name="RADIO_FAVOURITES_SCREEN" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+            <Description>the bankNR in Preset-Hub</Description>
+        </Element>
+        <Element Name="RADIO_Selection_MODE" Size="tU8" defaultVal="1" dpType="dptU8" Persist="True" Repeat="1" Event="GUI_DPTUNER__FOR_XML_RADIO_SELECTION_MODE">
+            <Description>stores the last selection mode for Next/Prev</Description>
+        </Element>
+        <Element Name="RADIO_ACTIVE_STATION_BAND_STRING" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="10" Event="GUI_DPTUNER__FOR_XML_RADIO_ACTIVE_STATION_BAND_STRING">
+            <Description>keeps the current Bandstring</Description>
+        </Element>
+        <Element Name="RADIO_ACTIVE_STATION_PS" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="129" Event="GUI_DPTUNER__FOR_XML_RADIO_ACTIVE_STATION_PS">
+            <Description>keeps the PS name of the current station in manual mode</Description>
+        </Element>
+        <Element Name="RADIO_CURRENT_TA_STATION_NAME" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="129" Event="GUI_DPTUNER__FOR_XML_RADIO_CURRENT_TA_STATION_NAME">
+            <Description>keeps the current TA Station Name</Description>
+        </Element>
+        <Element Name="RADIO_ACTIVE_STATION_PRESET_NR" Size="tS8" defaultVal="0" dpType="dptS8" Persist="True" Repeat="1" Event="GUI_DPTUNER__FOR_XML_RADIO_ACTIVE_STATION_PRESET_NR">
+            <Description>holds the active station Preset-Nr</Description>
+        </Element>
+        <Element Name="RADIO_TEXT_MODE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+            <Description>saves the last RadioTextMode from XML</Description>
+        </Element>
+        <Element Name="RADIO_CHANGED_PRESET_CONTENT" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_DPTUNER__FOR_XML_RADIO_CHANGED_PRESET_CONTENT">
+            <Description>the content of the current preset has been changed</Description>
+        </Element>
+        <Element Name="RADIO_ACTIVE_STATION_FM_PRESET_NR" Size="tS8" defaultVal="0" dpType="dptS8" Persist="True" Repeat="1" Event="GUI_DPTUNER__FOR_XML_RADIO_ACTIVE_STATION_PRESET_NR">
+            <Description>FM preset number</Description>
+        </Element>
+        <Element Name="RADIO_ACTIVE_STATION_AM_PRESET_NR" Size="tS8" defaultVal="0" dpType="dptS8" Persist="True" Repeat="1" Event="GUI_DPTUNER__FOR_XML_RADIO_ACTIVE_STATION_PRESET_NR">
+            <Description>AM Preset number</Description>
+        </Element>
+    </Element>
+    <Element Name="TMC_INFO" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Holds TMC Info from middleware</Description>
+    </Element>
+    <Element Name="TP_SEEK" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_DPTUNER__TP_SEEK">
+        <Description>Holds the status of tp seek, active or not</Description>
+    </Element>
+    <Element Name="CLUSTER_NEW_LIST" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Notification for cluster new station list available</Description>
+    </Element>
+    <Element Name="CURRENT_BANK" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="GUI_CURRENT_BANK">
+        <Description>To store the current Bank information FM1, FM2, AM</Description>
+    </Element>
+    <Element Name="STATION_LIST_LOADING_STATE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_STATION_LOADING_STATE">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="HD_STATUS" Size="2" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>Structure with HD status on/off</Description>
+        <Element Name="AM" Size="tBool" defaultVal="true" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_HD_STATUS">
+            <Description>Datapool with AM HD status</Description>
+        </Element>
+        <Element Name="FM" Size="tBool" defaultVal="true" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_HD_STATUS">
+            <Description>Datapools for FM HD status</Description>
+        </Element>
+    </Element>
+    <ListElement Name="AM_STATIONLIST" dpType="dptList" NumberOfCols="4" NumberOfRows="100" dynLen="false">
+        <Description>Datapool list to hold AM Station list</Description>
+        <Column Name="FREQUENCY" BaseType="tU32" defaultVal="0x000000" dpType="dptU32" ElementSize="1">
+            <Description>Datapool to store AM Frequency</Description>
+        </Column>
+        <Column Name="STATION_NAME" BaseType="bpstl::string" defaultVal="&quot;&quot;" dpType="dpbpstl::string" ElementSize="1">
+            <Description>Datapool to store the Station name</Description>
+        </Column>
+        <Column Name="HD_PRGM_NO" BaseType="tU8" defaultVal="0x00" dpType="dptU8" ElementSize="1">
+            <Description>Datapool to store the HD Program no</Description>
+        </Column>
+        <Column Name="PRESET_NO" BaseType="tU8" defaultVal="0x00" dpType="dptU8" ElementSize="1">
+            <Description>Datapool to store the AM Preset no</Description>
+        </Column>
+    </ListElement>
+    <Element Name="AM_STATIONLIST_COUNT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_AM_STATIONLIST_COUNT">
+        <Description>Datapool for storing AM station list count</Description>
+    </Element>
+    <Element Name="CURRENT_AM_STATIONLIST_INDEX" Size="tU8" defaultVal="0xFF" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Datapool to store list index of active station for AM list</Description>
+    </Element>
+    <Element Name="FM_PRESET_LIST_HD_STATUS" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="GUI_PRESET_LIST_HD_STATUS">
+        <Description>Holds HD status of the FM preset list elements from middleware. Bitwise</Description>
+    </Element>
+    <Element Name="AM_PRESET_LIST_HD_STATUS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_PRESET_LIST_HD_STATUS">
+        <Description>Holds HD status of the AM preset list elements from middleware</Description>
+    </Element>
+    <Element Name="HD_PSD" Size="3" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>Datapool to store the PSD information</Description>
+        <Element Name="TITLE" Size="bpstl::string" defaultVal="&quot;&quot;" dpType="dpbpstl::string" Persist="False" Repeat="1" Event="GUI_PSD_INFO">
+            <Description>Datapool to store title</Description>
+        </Element>
+        <Element Name="ALBUM" Size="bpstl::string" defaultVal="&quot;&quot;" dpType="dpbpstl::string" Persist="False" Repeat="1" Event="GUI_PSD_INFO">
+            <Description>Datapool to store Album name</Description>
+        </Element>
+        <Element Name="ARTIST" Size="bpstl::string" defaultVal="&quot;&quot;" dpType="dpbpstl::string" Persist="False" Repeat="1" Event="GUI_PSD_INFO">
+            <Description>Datapool to store the Artist name</Description>
+        </Element>
+    </Element>
+    <Element Name="LIST_UPDATE_STATUS" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_TUN_LIST_UPDATE_STATUS">
+        <Description>Holds List update status</Description>
+    </Element>
+</Datapool>
