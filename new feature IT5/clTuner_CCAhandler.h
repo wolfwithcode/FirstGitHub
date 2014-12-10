@@ -189,7 +189,6 @@ private:
 	tVoid vHandleFID_G_Get_PSD_Data_From_FCTuner(amt_tclServiceData* poMessage);
 
 	tVoid vHandle_FID_TUN_S_CONFIGLIST_UPDATE_From_FCTuner(amt_tclServiceData* poMessage);
-
 #endif
    
 	tVoid vHandleFID_TUN_G_HD_TEST_MODE_DATA_From_FCTuner( amt_tclServiceData* poMessage);
@@ -297,13 +296,11 @@ public:
 
    tVoid vHandleFID_S_SET_FEATURE_To_FCTuner(tU32 , tU32);
 
-   tVoid vHandleFID_TUN_GET_HD_TEST_MODE_DATA();
-
    tVoid vHandleFID_S_SET_HICUT_To_FCTuner(tU8);
 
    tVoid vHandleFID_S_AFLIST_V2_To_FCTuner(tU8 u8Command ,tU8 u8Data=0 );
  
-
+   tVoid vHandleFID_TUN_GET_HD_TEST_MODE_DATA();
 
    tVoid vHandleFID_S_STOP_ANNOUNCEMENT_To_FCTuner(tU8);
 

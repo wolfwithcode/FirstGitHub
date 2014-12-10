@@ -3663,6 +3663,128 @@ void clHSA_TestMode::vGetVersion(GUI_String *out_result,ulword Version)
 
          //break;
          // }*/
+
+	  case EN_HDRADIO_VERSION:
+	  {
+		 /* if(m_poDataPool)
+		  {
+			  u32Size   = m_poDataPool->u32dp_getElementSize(.....);
+			  OSAL_pvMemorySet((tVoid*)pacText,NULL,MAX_LEN_FOR_VERSION);
+
+			  m_poDataPool->u32dp_get(....,
+					  (tVoid*)pacText,
+					   u32Size	);
+		  }
+
+          //Return the Customer version
+		 GUI_String_vSetCStr(out_result, (tU8*)pacText);
+		  */
+          break;
+	  }
+
+	  case EN_MCAN_INT_SWITCH_VERSION:
+	  {
+          /*
+		  tU8 u8SW_Version_Lower = 0;
+          tU8 u8SW_Version_Mid = 0;
+          tU8 u8SW_Version_Upper = 0;
+          tU8 u8HW_Version_Lower = 0;
+          tU8 u8HW_Version_Mid = 0;
+          tU8 u8HW_Version_Upper = 0;
+
+          if(m_poDataPool)
+          {
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Upper,
+        			  sizeof(u8SW_Version_Upper));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Mid,
+        			  sizeof(u8SW_Version_Mid));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Lower,
+        			  sizeof(u8SW_Version_Lower));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Upper,
+        			  sizeof(u8HW_Version_Upper));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Mid,
+        			  sizeof(u8HW_Version_Mid));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Lower,
+        			  sizeof(u8HW_Version_Lower));
+          }
+
+          UTF8_s32SaveNPrintFormat( pacText,MAX_GPS_FORMAT_STRLEN,"%u.%u.%u/%u.%u.%u",
+             u8HW_Version_Upper, u8HW_Version_Mid, u8HW_Version_Lower,
+             u8SW_Version_Upper, u8SW_Version_Mid, u8SW_Version_Lower);
+
+          //Return the Customer version
+		  GUI_String_vSetCStr(out_result, (tU8*)pacText);
+	*/
+          break;
+	  }
+
+	  case EN_MCAN_INT_REAR_SWITCH_VERSION:
+	  {
+          /*
+		  tU8 u8SW_Version_Lower = 0;
+          tU8 u8SW_Version_Mid = 0;
+          tU8 u8SW_Version_Upper = 0;
+          tU8 u8HW_Version_Lower = 0;
+          tU8 u8HW_Version_Mid = 0;
+          tU8 u8HW_Version_Upper = 0;
+
+          if(m_poDataPool)
+          {
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Upper,
+        			  sizeof(u8SW_Version_Upper));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Mid,
+        			  sizeof(u8SW_Version_Mid));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Lower,
+        			  sizeof(u8SW_Version_Lower));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Upper,
+        			  sizeof(u8HW_Version_Upper));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Mid,
+        			  sizeof(u8HW_Version_Mid));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Lower,
+        			  sizeof(u8HW_Version_Lower));
+          }
+
+          UTF8_s32SaveNPrintFormat( pacText,MAX_GPS_FORMAT_STRLEN,"%u.%u.%u/%u.%u.%u",
+             u8HW_Version_Upper, u8HW_Version_Mid, u8HW_Version_Lower,
+             u8SW_Version_Upper, u8SW_Version_Mid, u8SW_Version_Lower);
+
+          //Return the Customer version
+		  GUI_String_vSetCStr(out_result, (tU8*)pacText);
+	*/
+          break;
+	  }
+
+	  case EN_MCAN_RSE_VERSION:
+	  {
+		  /*
+		  if(m_poDataPool)
+		  {
+			  u32Size   = m_poDataPool->u32dp_getElementSize(......);
+			  OSAL_pvMemorySet((tVoid*)pacText,NULL,MAX_LEN_FOR_VERSION);
+
+			  m_poDataPool->u32dp_get(....,
+					  (tVoid*)pacText,
+					   u32Size	);
+		  }
+
+          //Return the Customer version
+		  GUI_String_vSetCStr(out_result, (tU8*)pacText);
+	*/
+          break;
+	  }
+
       default:
          {
             /** At present i cannot see this Version in the OSAL registry

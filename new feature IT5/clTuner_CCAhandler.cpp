@@ -2439,28 +2439,8 @@ tVoid clTuner_CCAhandler::vHandleFID_G_Get_PSD_Data_From_FCTuner( amt_tclService
    }
 }
 
-/*************************************************************************
-* FUNCTION: clTuner_CCAhandler::vHandleFID_TUN_GET_HD_TEST_MODE_DATA( )
-*
-* DESCRIPTION: Call handler to extract data from the status message from server for
-*
-* PARAMETER:   None
-*
-* RETURNVALUE: NONE
 
-*************************************************************************/
-tVoid clTuner_CCAhandler::vHandleFID_TUN_GET_HD_TEST_MODE_DATA()
-{
-	if ( m_poTrace != NULL )
-	   {
-		  m_poTrace->vTrace(  TR_LEVEL_HMI_INFO,
-			 TR_CLASS_HSI_TUNER_MSG,
-			 "Get HD Test Mode Data");
-	   }
-	bSendCCAMessage( MIDW_TUNERFI_C_U16_FID_TUN_G_HD_TEST_MODE_DATA,
-			AMT_C_U8_CCAMSG_OPCODE_STATUS);
-   return;
-}
+
 
 
 /*************************************************************************
@@ -2493,7 +2473,7 @@ tVoid clTuner_CCAhandler::vHandleFID_TUN_G_HD_TEST_MODE_DATA_From_FCTuner( amt_t
 		
 			//Extract call sign
 			
-			bpstl::string sCallSign = oMsgData.TunerHDTestModeData.sHDCallSign;
+			bpstl::string sCallSign = oMsgData.TunerHDTestModeData.sHDCallSign.szValue;
 
 			DataPool.vSetString(DPTUNER__TESTMODE_HD_CALL_SIGN, sCallSign);
 	
@@ -2501,14 +2481,14 @@ tVoid clTuner_CCAhandler::vHandleFID_TUN_G_HD_TEST_MODE_DATA_From_FCTuner( amt_t
 		
 			//Extract stationID(PID)
 		
-			tU32 u32ProgID = oMsgData.TunerHDTestModeData.u32HDStationId;
+			tU32 u32ProgID = oMsgData.TunerHDTestModeData.u32HDStationId.szValue;
 		
 			DataPool.vSetU32Value(DPTUNER__TESTMODE_HD_PRG_ID,u32ProgID);
 									 
 			ETG_TRACE_USR4(("vHandleFID_TUN_G_HD_TEST_MODE_DATA_From_FCTuner(), u32HDStationId : %d ",u32ProgID));
 		
 			//Extract CD No.
-			tU8 u8CDno = oMsgData.TunerHDTestModeData.u8CD_NO;
+			tU8 u8CDno = oMsgData.TunerHDTestModeData.u8CD_NO.szValue;
 			
 			DataPool.vSetU32Value(DPTUNER__TESTMODE_HD_CD_NO,u8CDno);
 			
@@ -3270,6 +3250,29 @@ tVoid clTuner_CCAhandler::vHandleFID_S_AFLIST_V2_To_FCTuner(tU8 u8Command , tU8 
 }
 
 
+
+/*************************************************************************
+* FUNCTION: clTuner_CCAhandler::vHandleFID_TUN_GET_HD_TEST_MODE_DATA( )
+*
+* DESCRIPTION: Call handler to extract data from the status message from server for
+*
+* PARAMETER:   None
+*
+* RETURNVALUE: NONE
+
+*************************************************************************/
+tVoid clTuner_CCAhandler::vHandleFID_TUN_GET_HD_TEST_MODE_DATA()
+{
+	if ( m_poTrace != NULL )
+	   {
+		  m_poTrace->vTrace(  TR_LEVEL_HMI_INFO,
+			 TR_CLASS_HSI_TUNER_MSG,
+			 "Get HD Test Mode Data");
+	   }
+	bSendCCAMessage( MIDW_TUNERFI_C_U16_FID_TUN_G_HD_TEST_MODE_DATA,
+			AMT_C_U8_CCAMSG_OPCODE_STATUS);
+   return;
+}
 
 
 /*************************************************************************
