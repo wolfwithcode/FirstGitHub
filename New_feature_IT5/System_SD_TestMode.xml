@@ -1,0 +1,2866 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SubDevice DeviceName="TestMode" Description="Functions for service and developer testmode" xsi:schemaLocation="LCN2 ./../XSD/SubDevice.xsd" xmlns="LCN2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <DeviceFunctions>
+        <DeviceFunction FunctionName="GetTMDataAvailability" FunctionResponse="ONCE" Description="API for synchronising the testmode data." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns 1 if Testmode data is available."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetDABTestmode" FunctionResponse="ONCE" Description="API for indicating enter/exit from DAB testmode." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Active" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="1" Description="To indicate enable/disable of testmode">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="false" Meaning="Indicates exit from DAB testmode"/>
+                                <Value Value="true" Meaning="Indicates entrance to DAB testmode"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+          <DeviceFunction FunctionName="SetNewScreenDataID" FunctionResponse="ONCE" Description="API for entering the respective screens." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Screen_ID" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Indicates screen">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                            <Value Value="0" Meaning="FM_AF_List "/>
+                            <Value Value="1" Meaning="TMC_Station_List"/>
+                            <Value Value="2" Meaning="Version_Screen"/>
+                        </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="DisplayTestStatus" FunctionResponse="ONCE" Description="API for Display test command status." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="DisplayTestSuccess" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="1" Description="Display test command handled">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="false" Meaning="Command to start/stop not successful"/>
+                                <Value Value="true" Meaning="Command to start/stop successful"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="CheckSystemVoltage" FunctionResponse="ONCE" Description="API for requesting battery voltage from SPM." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Action" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="1" Description="Update action">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="false" Meaning="Update_stop"/>
+                                <Value Value="true" Meaning="Update_start"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABChannelNumber" FunctionResponse="ONCE" Description="API for getting the Active Channel number of the current ensemble." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Label of tuned frequency of max 3 characters is returned."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABEnsembleLabel" FunctionResponse="ONCE" Description="API for getting the full Ensemble Label(16 characters)." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Ensemble Label of max 16 characters is returned."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABEnsembleID" FunctionResponse="ONCE" Description="API for getting the Ensemble ID." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns Ensemble ID in Hex."/>
+            <Parameters>
+                <Parameter Name="DABTuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Foreground or background tuner"/>
+			</Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABServiceID" FunctionResponse="ONCE" Description="API for getting the Service ID." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns Service ID in Hex."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFrequencyTable" FunctionResponse="ONCE" Description="API for getting the Current Frequency Table." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns Frequency Table as a string."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABEnsembleFrequency" FunctionResponse="ONCE" Description="API for getting the Current Ensemble Frequency." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns tuned Ensemble Frequency value."/>
+            <Parameters>
+                <Parameter Name="DABTuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Foreground or background tuner"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABServiceLabel" FunctionResponse="ONCE" Description="API for getting the full Service Label." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns Service label with 16 characters."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMSCBER" FunctionResponse="ONCE" Description="API for getting the MSC Bit Error Rate." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Bit Error Rate of the current audio subchannel."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFICBER" FunctionResponse="ONCE" Description="API for getting the FIC Bit Error Rate." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Bit Error Rate of the Fast Information Channel."/>
+            <Parameters>
+                <Parameter Name="DABTuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Foreground or background tuner"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDAB_RS_FEC" FunctionResponse="ONCE" Description="API for Reed Solomon error correction." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Forward Error Correction(FEC) for Reed-Soloman coding."/>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="GetDAB_BG_Mode" FunctionResponse="ONCE" Description="API gives the Mode of Backgroung tuner" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Mode of the Background tuner"/>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="GetDABTMC" FunctionResponse="ONCE" Description="API for the TMC " Comment=" Returns the No of DAB TMC Messages">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Message counter TMC"/>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="GetDAB_TPEG" FunctionResponse="ONCE" Description="API for the TPEG " Comment="Returns the No of DAB TMC Messages">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Message counter TPEG"/>
+        </DeviceFunction>
+		<!--New API's added for TPEG requirement-->
+		<!--Start-->
+		<DeviceFunction FunctionName="StartTPEGRequest" FunctionResponse="NONE" Description="API to be called on entering the TPEG" Comment="B">
+			<ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+<DeviceFunction FunctionName="GetDAB_TPEGNew" FunctionResponse="ONCE" Description="API for indicating enter/exit from DAB testmode." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Information about total number of TPEG messages received at the Tuner from system startup and for the particular service ID at the Tuner and time the last TPEG message was received." Comment=""/>
+            <Parameters>
+                <Parameter Name="Info_Type" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="To indicate enable/disable of testmode">
+                    <ParameterDescription>
+                        <ValueRange>
+                           <Enumeration>
+					<Value Value="0" Meaning="Informs the Total number of TPEG messages received at the Tuner from system startup"/>
+					<Value Value="1" Meaning="Informs the total number of messages received for the particular service ID at the Tuner"/>
+					<Value Value="2" Meaning="Informs the time the last TPEG message is received at the Tuner side"/>
+				 </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+	
+	<DeviceFunction FunctionName="Get_TEC" FunctionResponse="ONCE" Description="API for indicating enter/exit from DAB testmode." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Information about total number of TPEG messages received at the Tuner from system startup and for the particular service ID at the Tuner and time the last TPEG message was received." Comment=""/>
+            <Parameters>
+                <Parameter Name="Info_Type" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="To indicate enable/disable of testmode">
+                    <ParameterDescription>
+                        <ValueRange>
+                           <Enumeration>
+					<Value Value="0" Meaning="Informs the Total number of TEC messages received at the Tuner from system startup"/>
+					<Value Value="1" Meaning="Informs the total number of messages received for the particular service ID at the Tuner"/>
+					<Value Value="2" Meaning="Informs the time the last TEC message is received at the Tuner side"/>
+					<Value Value="3" Meaning="Informs the time the last TEC  selected message is received at the Tuner side"/>
+				 </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+		<DeviceFunction FunctionName="Get_TMC" FunctionResponse="ONCE" Description="API for indicating enter/exit from DAB testmode." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Information about total number of TPEG messages received at the Tuner from system startup and for the particular service ID at the Tuner and time the last TPEG message was received." Comment=""/>
+            <Parameters>
+                <Parameter Name="Info_Type" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="To indicate enable/disable of testmode">
+                    <ParameterDescription>
+                        <ValueRange>
+                           <Enumeration>
+					<Value Value="0" Meaning="Informs the Total number of TMC messages received at the Tuner from system startup"/>
+					<Value Value="1" Meaning="Informs the total number of messages received for the particular service ID at the Tuner"/>
+					<Value Value="2" Meaning="Informs the time the last TMC message is received at the Tuner side"/>
+					<Value Value="3" Meaning="Informs the time the last TMC  selected  message is received at the Tuner side"/>
+				 </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+	<DeviceFunction FunctionName="GetURIData" FunctionResponse="ONCE" Description="API for indicating enter/exit from DAB testmode." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Information about total number of TPEG messages received at the Tuner from system startup and for the particular service ID at the Tuner and time the last TPEG message was received." Comment=""/>
+            <Parameters>
+                <Parameter Name="Info_Type" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="To indicate enable/disable of testmode">
+                    <ParameterDescription>
+                        <ValueRange>
+                           <Enumeration>
+					<Value Value="0" Meaning="Informs the Total number of TPEG messages received at the Tuner from system startup"/>
+					<Value Value="1" Meaning="Informs the total number of messages received for the particular service ID at the Tuner"/>
+				
+				 </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+	<DeviceFunction FunctionName="GetTotalACIDperFrame" FunctionResponse="ONCE" Description="API for indicating enter/exit from DAB testmode." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Information about total number of TPEG messages received at the Tuner from system startup and for the particular service ID at the Tuner and time the last TPEG message was received." Comment=""/>
+            <Parameters>
+                <Parameter Name="Info_Type" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="To indicate enable/disable of testmode">
+                    <ParameterDescription>
+                        <ValueRange>
+                           <Enumeration>
+					<Value Value="0" Meaning="Informs the Total number of TPEG messages received at the Tuner from system startup"/>
+					<Value Value="1" Meaning="Informs the total number of messages received for the particular service ID at the Tuner"/>
+				
+				 </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+		<DeviceFunction FunctionName="RequestToURIList" FunctionResponse="ONCE" Description="Request to get the URI lis" Comment="">
+			<ReturnValue ReturnType="DATA_TYPE_VOID"/>
+		</DeviceFunction>
+		<DeviceFunction FunctionName="GetURIListCount" FunctionResponse="ONCE" Description="Request to get the URI lis" Comment="">
+			<ReturnValue ReturnType="DATA_TYPE_UINT"/>
+		</DeviceFunction>
+		<DeviceFunction FunctionName="GetURIList" FunctionResponse="ONCE" Description="API to get the URI List " Comment="Returns the info of URI List">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the info of URI List" Comment=""/>
+             <Parameters>
+               <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="ItemIndex of the requested Item;ValueRange=0-list-lenght -1" Comment="Get listcount using POIListCount"/>
+               <Parameter Name="Info_Type" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="" Description="Type of information to set" Comment="Corresponding fixformat is FMT_DISTANCE_1 for cell 1">
+                 <ParameterDescription>
+                   <ArrayDescription>
+				    <ArrayElement ListIndex="0" Description="Row number"/>
+                  <ArrayElement ListIndex="1" Description="The URI string"/>
+					<ArrayElement ListIndex="2" Description="URI list element is selected or not"/>
+					<ArrayElement ListIndex="3" Description="URI list element is active or not"/>
+			    </ArrayDescription>
+                 </ParameterDescription>
+               </Parameter>               
+             </Parameters>
+          </DeviceFunction>
+	
+		<DeviceFunction FunctionName="RequestToStreamList" FunctionResponse="ONCE" Description="Request to get the URI lis" Comment="">
+			<ReturnValue ReturnType="DATA_TYPE_VOID"/>
+		</DeviceFunction>
+		<DeviceFunction FunctionName="GetStreamListCount" FunctionResponse="ONCE" Description="Request to get the URI lis" Comment="">
+			<ReturnValue ReturnType="DATA_TYPE_UINT"/>
+		</DeviceFunction>
+ <DeviceFunction FunctionName="GetStreamList" FunctionResponse="ONCE" Description="Returns information about the text direction and label icon of POIs" Comment="B">
+             <ReturnValue 
+               ReturnType="DATA_TYPE_STRING" Description="infos of the requested POI;text and direction of POIs" Comment=""
+             />
+             <Parameters>
+               <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="ItemIndex of the requested Item;ValueRange=0-list-lenght -1" Comment="Get listcount using POIListCount"/>
+               <Parameter Name="Info_Type" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="" Description="Type of information to set" Comment="Corresponding fixformat is FMT_DISTANCE_1 for cell 1">
+                 <ParameterDescription>
+                   <ArrayDescription>
+				    <ArrayElement ListIndex="0" Description="Row number"/>
+                   <ArrayElement ListIndex="1" Description="Provides the originator SID"/>
+					<ArrayElement ListIndex="2" Description="The value of application ID"/>
+					<ArrayElement ListIndex="3" Description="The value of content ID"/>
+					<ArrayElement ListIndex="4" Description="The version of the application in the stream"/>
+					<ArrayElement ListIndex="5" Description="The type of the location reference in the stream"/>
+					<ArrayElement ListIndex="6" Description="The total number of messages which belong to ACID+location referencing+ version combination in the current transport frame."/>
+					<ArrayElement ListIndex="7" Description="The average number of messages received per frame for a period of one minute"/>
+					<ArrayElement ListIndex="8" Description="The maximum number of messages received per frame  from system startup"/>
+			                   </ArrayDescription>
+                 </ParameterDescription>
+               </Parameter>               
+             </Parameters>
+          </DeviceFunction>
+         <DeviceFunction FunctionName="GetDAB_TSU_Status" FunctionResponse="ONCE" Description="API for TSU status" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="Returns the TSU DAB-FM switching enabled"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABSwitchingStatus" FunctionResponse="ONCE" Description="API for the switching status" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="Returns the DAB/DAB switching enabled"/>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="GetDABNumEnsembles_DB" FunctionResponse="ONCE" Description="API for Number of ensembles in the Database" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Number of ensembles in the Database"/>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="GetDABNum_TMC_Services" FunctionResponse="ONCE" Description="API for Number of TMC Services" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Number of TMC Services"/>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="GetDABNum_TPEG_Services" FunctionResponse="ONCE" Description="API for Number of TPEG Services" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Number of TPEG Services"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABExpertIDValue" FunctionResponse="ONCE" Description="API to get the exper ID value." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Expert ID value"/>
+            <Parameters>
+                <Parameter Name="ID" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="row no. for which ID no requested."/>
+            </Parameters>
+        </DeviceFunction>
+       <DeviceFunction FunctionName="GetDABExpertIDInfo" FunctionResponse="ONCE" Description="API for getting the label/value of the requested ID" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the label/value of the requested ID"/>
+            <Parameters>
+                <Parameter Name="ID" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="row no. for which the ID is requested."/>
+                <Parameter Name="ID_Value" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="ID which depends on the user selection"/>
+                <Parameter Name="Type" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="0" Description="0= Label 1=value"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCurrentDABActivity" FunctionResponse="ONCE" Description="API for DAB tuner activity status." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Forward Error Correction(FEC) for Reed-Soloman coding.">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="Normal"/>
+                            <Value Value="1" Meaning="Learn"/>
+                            <Value Value="2" Meaning="Seek"/>
+                            <Value Value="3" Meaning="Scan"/>
+                            <Value Value="4" Meaning="ServiceSeek"/>
+                            <Value Value="5" Meaning="Invalid"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFieldStrength" FunctionResponse="ONCE" Description="API for Field Strength." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_SINT" Description="Field Strength in dBm."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABSignalQuality" FunctionResponse="ONCE" Description="API for Signal Quality." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns Current Reception Quality."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABAudioQuality" FunctionResponse="ONCE" Description="API for Audio Quality." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns Audio Quality of the current service."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABSync" FunctionResponse="ONCE" Description="API for DAB Synchronisation." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="Returns the DAB Synchronisation."/>
+            <Parameters>
+                <Parameter Name="DABTuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Foreground or background tuner"/>
+            </Parameters>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="SpellerInitforID" FunctionResponse="ONCE" Description="API on the entry to the DAB speller screen" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+				<Parameters>
+					<Parameter Name="ID" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="row no. for which ID no requested."/>
+				</Parameters>
+        </DeviceFunction>
+		<DeviceFunction FunctionName="SpellerSetNameInput" FunctionResponse="ONCE" Description="API on the press of OK button in the speller screen" Comment="">
+			<ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+		</DeviceFunction>
+		<DeviceFunction FunctionName="SpellerGetNameInput" FunctionResponse="ONCE" Description="API to get the string entered in the speller" Comment="">
+			<ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the entered string in the speller"/>
+		</DeviceFunction>
+		<DeviceFunction FunctionName="SpellerCharacterInput" FunctionResponse="ONCE" Description="Used in the speller to send the character chosen in the widget" Comment="">
+			<ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+			<Parameters>
+                <Parameter Name="InputString" Type="DATA_TYPE_STRING" Direction="IN" DefaultValue="0" Description="chosen character in the speller"/>
+            </Parameters>
+		</DeviceFunction>
+		<DeviceFunction FunctionName="SpellerGetCursorPos" FunctionResponse="ONCE" Description="API for getting the current position of speller." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Current position of speller is returned."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SpellerCharacterDelete" FunctionResponse="ONCE" Description="API for deleting all the characters" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+        </DeviceFunction>
+        	<DeviceFunction FunctionName="GetTimeInterval" FunctionResponse="ONCE" Description="API for getting time interval state" Comment="">
+               <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Time interval status">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="2012-2030"/>
+                            <Value Value="1" Meaning="2031-2049"/>
+                            <Value Value="2" Meaning="2050-2068"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetTimeInterval" FunctionResponse="ONCE" Description="API for setting the time interval in STM" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Interval" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="Type of Service Linking">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                            <Value Value="0" Meaning="2012-2030"/>
+                            <Value Value="1" Meaning="2031-2049"/>
+                            <Value Value="2" Meaning="2050-2068"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMute" FunctionResponse="ONCE" Description="API for Mute status." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="Returns Mute status of the DAB audio source."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABAudioBitRate" FunctionResponse="ONCE" Description="API for getting Audio Bit rate." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Audio bit rate."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABSamplingRate" FunctionResponse="ONCE" Description="API for getting Audio Sampling rate." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Audio sampling rate."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABStereoMode" FunctionResponse="ONCE" Description="API for getting Stereo mode." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Stereo mode string like ST or JT or DC or SC."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABAAC" FunctionResponse="ONCE" Description="API for getting Advanced Audio Codec." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Advanced Audio codec like SBR or PS or none."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABProtectionLevel" FunctionResponse="ONCE" Description="API for getting Protection level." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="An ensemble has a maximum bit rate that can be carried, but this depends on which error protection level is used."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABAudioCodec" FunctionResponse="ONCE" Description="API for getting Audio Codec." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Audio codec maximum string length is 5. For example MPEG, DAB+, DMBA, DMBV and NR (not recognized)."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABSourceState" FunctionResponse="ONCE" Description="API for indicating source." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="DAB Source state i.e.,DAB Audio in foreground or background is indicated.">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="DAB_Background"/>
+                            <Value Value="1" Meaning="DAB_Foreground"/>
+                            <Value Value="2" Meaning="DAB_SF"/>
+                            <Value Value="3" Meaning="DAB_ForegroundTA"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFMFrq" FunctionResponse="ONCE" Description="API for getting FM Frequency." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="FM frequency for FMLinking in MHz."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFMPI" FunctionResponse="ONCE" Description="API for getting FM PI code." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="PI of the tuned FM station."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFMQuality" FunctionResponse="ONCE" Description="API for getting FM Quality -for use in FM-linking." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Quality of the tuned FM station."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABTransmissionMode" FunctionResponse="ONCE" Description="API for getting DAB Transmission Mode." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="DAB transmission mode is a parameter of channel-decoding range 1..4."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABShortEnsembleLabel" FunctionResponse="ONCE" Description="API for getting short ensemble label." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Short ensemble label max 8 characters."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABShortServiceLabel" FunctionResponse="ONCE" Description="API for getting short service label." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Short service label max 8 characters."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABSrvCompID" FunctionResponse="ONCE" Description="API for getting Service Component ID." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Service Component ID."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABSrvCompLabel" FunctionResponse="ONCE" Description="API for getting Service Component Label." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Full Service Component label max 16 characters."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABShortSrvCompLabel" FunctionResponse="ONCE" Description="API for getting short Service Component Label." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Service Component label max 8 characters."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABTPSupport" FunctionResponse="ONCE" Description="API for getting the TP support of the current service." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="1 = TP-Support, 0 = no TP-Support"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABTAStatus" FunctionResponse="ONCE" Description="API for getting the TA status of the current service." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="1 = TA active, 0 = TA not active."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABDRC" FunctionResponse="ONCE" Description="API for DRC." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="Indicates whether programme supports Dynamic compression."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDAB_PorS_Info" FunctionResponse="ONCE" Description="API for getting the info if it is a primary/secondary service." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="1-Primary service, 0-Secondary service."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABAudioDataSerComType" FunctionResponse="ONCE" Description="API for getting component type for the particular service." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Depending on whether it is a Audio/Data service, the component type is returned IN Hex."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDAB_PorD_Flag" FunctionResponse="ONCE" Description="API for getting the info if it is an Audio/Data service type." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="1-Audio, 0-Data."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABTransportMechanismID" FunctionResponse="ONCE" Description="API for getting TMId." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Transport Mechanism ID.">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="MSC_AudioStream"/>
+                            <Value Value="1" Meaning="MSC_DataStream"/>
+                            <Value Value="2" Meaning="FIDC"/>
+                            <Value Value="3" Meaning="MSC_DataPacket"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABAnnoSupport" FunctionResponse="ONCE" Description="API for getting the supported announcement bit mask." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Bit mask indicating the configured announcement types."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABNumOfAudServices" FunctionResponse="ONCE" Description="API for getting the number of Audio services in current ensemble." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Number of Audio services."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABNumOfDataServices" FunctionResponse="ONCE" Description="API for getting the number of Data services in current ensemble." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Number of Data services."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABNumOfAudSerComp" FunctionResponse="ONCE" Description="API for getting the number of Audio service components." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Number of Audio service components."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABNumOfDataSerComp" FunctionResponse="ONCE" Description="API for getting the number of Data service components." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Number of Data service components."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABTMCSupportStatus" FunctionResponse="ONCE" Description="API for knowing if TMC is supported or not." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="0-TMC not supported, 1-TMC supported."/>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="DABEnsembleFrequency" FunctionResponse="ONCE" Description="API is to change the DAB ensemble frequency" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+            <Parameters>
+                <Parameter Name="Direction" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="0" Description="0 = Next and 1 = Previous"/>
+            </Parameters>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="DABChangeService" FunctionResponse="ONCE" Description="API is to change the DAB Services in testmode" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+            <Parameters>
+                <Parameter Name="Direction" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="0" Description="0 = Next and 1 = Previous"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABAnnoSwitchMask" FunctionResponse="ONCE" Description="API for getting currently playing announcement types." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Announcement Switch bit mask."/>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="GetDAB_Database_Scrn_No" FunctionResponse="ONCE" Description="API is used for the get the DAB Database screen no" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the DAB Database screen no"/>
+        </DeviceFunction>
+         <DeviceFunction FunctionName="DAB_DB_Screen" FunctionResponse="ONCE" Description="API called on the entry of the next DAB Database screen" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+             <Parameters>
+                <Parameter Name="Screen_ID" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="0" Description="0= On the press of encoder button. 1 = On the exit from the DAB database screen."/>
+            </Parameters>
+        </DeviceFunction>
+             <DeviceFunction FunctionName="DAB_DB_CurrentScreenQuery" FunctionResponse="ONCE" Description="API to repeat curerent DAB database query" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+        </DeviceFunction>
+          <DeviceFunction FunctionName="GetDABConcealmentLevel" FunctionResponse="ONCE" Description="API for getting the Concealment Level." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="DAB Concealment Level."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDAB_Database_String" FunctionResponse="ONCE" Description="API for getting the data in the DAB Database screen" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="DAB Database screen"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetDABConcealmentLevel" FunctionResponse="ONCE" Description="API for increasing/decreasing the Concealment Level." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description="DAB Concealment Level."/>
+            <Parameters>
+                <Parameter Name="Direction" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="0" Description="0 = Decrement and 1 = Increment"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetDABSFMode" FunctionResponse="ONCE" Description="API for setting the Service Linking mode." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="ServiceLinkingMode" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Type of Service Linking">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="ServcieLinking_OFF"/>
+                                <Value Value="1" Meaning="ServcieLinking_DAB"/>
+                                <Value Value="2" Meaning="ServcieLinking_DAB_FM"/>
+                                <Value Value="3" Meaning="ServcieLinking_FM"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABSFModeSelectionStatus" FunctionResponse="ONCE" Description="API for getting the status of Service Linking mode selection." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Status of Service Linking mode selection.">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="ServcieLinking_OFF"/>
+                            <Value Value="1" Meaning="ServcieLinking_DAB"/>
+                            <Value Value="2" Meaning="ServcieLinking_DAB_FM"/>
+                            <Value Value="3" Meaning="ServcieLinking_FM"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTASource" FunctionResponse="ONCE" Description="API for getting the TA Source." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the TA Source."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABNumberOfLinks" FunctionResponse="ONCE" Description="API for getting the total number of links." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the total number of links."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABActiveLinkIndex" FunctionResponse="ONCE" Description="API for getting the index of the active link." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the active link index."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABLinkType" FunctionResponse="ONCE" Description="API for service link list." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Link type corresponding to a particular index."/>
+            <Parameters>
+                <Parameter Name="Index" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Index of the service link list"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFrqLabel" FunctionResponse="ONCE" Description="API for service link list." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Frequency label of max 3 characters corresponding to a particular index."/>
+            <Parameters>
+                <Parameter Name="Index" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Index of the service link list"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABSID_PI" FunctionResponse="ONCE" Description="API for service link list." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB Service ID or FM PI code corresponding to a particular indexin hex."/>
+            <Parameters>
+                <Parameter Name="Index" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Index of the service link list"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABQuality" FunctionResponse="ONCE" Description="API for service link list." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the quality corresponding to a particular index."/>
+            <Parameters>
+                <Parameter Name="Index" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Index of the service link list"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABEID" FunctionResponse="ONCE" Description="API for service link list." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the EID corresponding to a particular index in hex."/>
+            <Parameters>
+                <Parameter Name="Index" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Index of the service link list"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCountry" FunctionResponse="ONCE" Description=" The API is used to get the country information." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the country information"/>
+        </DeviceFunction>
+          <DeviceFunction FunctionName="GetGender" FunctionResponse="ONCE" Description=" The API is used to get the gender information in the language screen of DTM." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns Gender information"/>
+          </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevDeviceAdress" FunctionResponse="ONCE" Description="Bluetooth module developer value UGZZCBtAddress." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Bluetooth adress of the internal blue tooth module chip."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevPIMOperationStatus" FunctionResponse="ONCE" Description="Bluetooth module developer value u16PimOperationStatus" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the u16PimOperationStatus Value as Hex fomated string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevHfpAgSupportedFeatures" FunctionResponse="ONCE" Description="Bluetooth module developer value HfpAgSupportedFeatures." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the HfpAgSupportedFeatures Value as Hex fomated string."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevPhonebookEntriesCount" FunctionResponse="ONCE" Description="Bluetooth module developer value for the two possible phone book sizes" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the number of phonebook entries as string"/>
+            <Parameters>
+                <Parameter Name="PhonebookType" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Type of Phonebook">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Mem Phonebook"/>
+                                <Value Value="1" Meaning="SIM Phonebook"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevAvpPlayStatus" FunctionResponse="ONCE" Description="Bluetooth module developer value u8AvpPlayStatus, indicate the working Status of the currently connected media player." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="0 = Stopped, 1 = Playing, 2 = Paused, 3 = Fwd_seeking, 4 = Rev_seeking">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="Stopped"/>
+                            <Value Value="1" Meaning="Playing"/>
+                            <Value Value="2" Meaning="Paused"/>
+                            <Value Value="3" Meaning="Fwd_seeking"/>
+                            <Value Value="4" Meaning="Rev_seeking"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevAvpSupportedPlayerStatus" FunctionResponse="ONCE" Description="Bluetooth module developer value u16AvpSupportedPlayerStatus." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the u16AvpSupportedPlayerStatus Value as Hex fomated string."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevSMSSupportedFeatures" FunctionResponse="ONCE" Description="Bluetooth module developer value u16SmsSupportedFeatures." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the u16SmsSupportedFeatures Value as Hex fomated string."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevSMSDeviceSystemStatus" FunctionResponse="ONCE" Description="Bluetooth module developer value u8SmsDeviceSystemStatus." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the u8SmsDeviceSystemStatus Value as Hex fomated string."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevSMSSupportedNotification" FunctionResponse="ONCE" Description="Bluetooth module developer value u16SmsSupportedNotification." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the u16SmsSupportedNotification Value as Hex fomated string."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevEnabledServices" FunctionResponse="ONCE" Description="Bluetooth module developer value to show the available Services" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="false=Service not available, true=Service available"/>
+            <Parameters>
+                <Parameter Name="BTService" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="The kind of service or BT Profile">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="HFP"/>
+                                <Value Value="1" Meaning="AVP"/>
+                                <Value Value="2" Meaning="SMS"/>
+                                <Value Value="3" Meaning="PIM"/>
+                                <Value Value="4" Meaning="DUN"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevConnectedServices" FunctionResponse="ONCE" Description="Bluetooth module developer value to show the connected Services" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="false=Service inconnected, true=Service connected"/>
+            <Parameters>
+                <Parameter Name="BTService" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="The kind of service or BT Profile">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="HFP"/>
+                                <Value Value="1" Meaning="AVP"/>
+                                <Value Value="2" Meaning="SMS"/>
+                                <Value Value="3" Meaning="PIM"/>
+                                <Value Value="4" Meaning="DUN"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="GetTelephoneMicrophoneConnectionValue" FunctionResponse="ONCE" Description="Indicates the current microphone connection value." Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns a value as string about the current telephone microphone connection."/>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="BTDevAudioCodecUsed" FunctionResponse="ONCE" Description="Bluetooth module developer value for the Audio Codec used." Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the current Audio Codec Value in use: 0 = PHONE_CALL_NBS, 1 = PHONE_CALL_WBS, 2 = SIRI_NBS, 3 = SIRI_WBS, 4 = DEFAULT_VA_NBS, 5 = DEFAULT_VA_WBS, 6 = IDLE ">
+          <ReturnValueDescription>
+            <ValueRange>
+              <Enumeration>
+                <Value Value="0" Meaning="PHONE_CALL_NBS"/>
+                <Value Value="1" Meaning="PHONE_CALL_WBS"/>
+                <Value Value="2" Meaning="SIRI_NBS"/>
+                <Value Value="3" Meaning="SIRI_WBS"/>
+                <Value Value="4" Meaning="DEFAULT_VA_NBS"/>
+                <Value Value="5" Meaning="DEFAULT_VA_WBS"/>
+                <Value Value="6" Meaning="IDLE"/>
+              </Enumeration>
+            </ValueRange>
+          </ReturnValueDescription>
+        </ReturnValue>
+      </DeviceFunction>
+        <DeviceFunction FunctionName="ServiceModeEntry" FunctionResponse="ONCE" Description="API called when the user enters STM">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description="API called when the user enters STM"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ServiceModeExit" FunctionResponse="ONCE" Description="API called when the user returns STM">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description="API called when the user returns STM"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetMFLKeyPressed" FunctionResponse="ONCE" Description="Returns the enum value of the MFL key pressed" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the enum value of the MFL key pressed"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerAntennaOne" FunctionResponse="ONCE" Description="Returns the status of tuner antenna 1" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the status of tuner antenna 1"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetSrvTroubleCodeListElement" FunctionResponse="ONCE" Description="Returns the trouble code value for the given Index" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the trouble code value for the given Index"/>
+            <Parameters>
+                <Parameter Name="Index" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Index of the list element">
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetUsbDeviceSrvStatus" FunctionResponse="ONCE" Description="Returns the status of USB" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the service status of USB: 0 = Dev. Error, 1 = Removed, 2 =  any other "/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetUsbDeviceSrvID" FunctionResponse="ONCE" Description="Returns USB Device ID" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the VendorID and ProductID of the USB Device separated by - as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetSrvSystemStatus" FunctionResponse="ONCE" Description="Returns the System status value">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the System Status value"/>
+            <Parameters>
+                <Parameter Name="SystemStatus" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="" Comment="NISSAN">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="SD-card slot Access (e.g. “OK”, “nOK”)"/>
+                                <Value Value="1" Meaning="Speed Signal"/>
+                                <Value Value="2" Meaning="Direction Signal"/>
+                                <Value Value="3" Meaning="Illumination Signal"/>
+                                <Value Value="4" Meaning="GPS-Antenna (e.g. “OK”, “short”, “open”)"/>
+                                <Value Value="5" Meaning="Phone Microphone Current (e.g. 2,5 V)"/>
+                                <Value Value="6" Meaning="Radio Antenna (values: “OK”, “Short circuit”, “Open load”)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetSrvUsbDeviceStatus" FunctionResponse="ONCE" Description="Returns the status of USB" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the status of USB"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetExtPhoneSignalState" FunctionResponse="ONCE" Description="Returns the state of ext Phone Signal as an integer" Comment="NISSAN NAR">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the state of ext Phone Signal as an integer"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTelephoneMicrophoneConnectionStatus" FunctionResponse="ONCE" Description="Indicates the current microphone connection status." Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns an integer value that indicate the current telephone microphone connection status. Possible return values are: 0: PHN_VAG_DIAG_MIC_CONN_OPEN Open load is detected for Microphone connection.; 1: PHN_VAG_DIAG_MIC_CONN_SHORT Short to ground is detected for Microphone connection.; 2: PHN_VAG_DIAG_MIC_CONN_OK Microphone connection status is OK.; 255: PHN_VAG_DIAG_MIC_CONN_UNDEF Microphone connection status is undefined."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetIpodFirmwareVersion" FunctionResponse="ONCE" Description="Returns the IPOD SW version as string" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the IPOD SW version as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetSystemStatus" FunctionResponse="ONCE" Description="Returns the System Status">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the System Status"/>
+            <Parameters>
+                <Parameter Name="SystemStatus" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Returns the System Status" Comment="NISSAN">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="SD-card slot Access (e.g. “OK”, “nOK”)"/>
+                                <Value Value="1" Meaning="USB Device (Values : Device id, Not connected, device error)"/>
+                                <Value Value="2" Meaning="Power Supply (voltage in V, e.g. 11,0 V)"/>
+                                <Value Value="3" Meaning="Speed Signal"/>
+                                <Value Value="4" Meaning="Direction Signal"/>
+                                <Value Value="5" Meaning="Illumination Signal"/>
+                                <Value Value="6" Meaning="GPS-Antenna (e.g. “OK”, “short”, “open”)"/>
+                                <Value Value="7" Meaning="Phone Microphone Current (e.g. 2,5 V)"/>
+                                <Value Value="8" Meaning="Radio Antenna (values: “OK”, “Short circuit”, “Open load”)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTroubleCodeListCount" FunctionResponse="ONCE" Description="Returns the TroubleCode List count" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the TroubleCode List count "/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ClearTroubleCodeList" FunctionResponse="ONCE" Description="Clears the Trouble code list" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTroubleCodeListElement" FunctionResponse="ONCE" Description="Returns the trouble code value as string for the given Index" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the trouble code value as string for the given Index"/>
+            <Parameters>
+                <Parameter Name="Index" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Index of the list element">
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetBTModuleMode" FunctionResponse="ONCE" Description="Returns the BTModule mode" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the BTModule mode"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetBTModuleMode" FunctionResponse="ONCE" Description="Set BTModule from Testmode screen" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description="Set BTModule from Testmode screen "/>
+            <Parameters>
+                <Parameter Name="BTModuleMode" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Mode to be set">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Normal Mode"/>
+                                <Value Value="1" Meaning="DUT Mode"/>
+                                <Value Value="2" Meaning="Production Mode"/>
+                                <Value Value="3" Meaning="Measurement"/>
+                                <Value Value="4" Meaning="Config_CVC_Mode"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTModuleStatus" FunctionResponse="ONCE" Description="Returns the BTModule status" Comment="NISSAN">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the BTModule status">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="OK"/>
+                            <Value Value="1" Meaning="Not Connected"/>
+                            <Value Value="2" Meaning="Switched Off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetSystemVoltage" FunctionResponse="ONCE" Description="Returns the Current System Voltage">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Current System Voltage"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCDDriveStatus" FunctionResponse="ONCE" Description="Returns the status of CD Drive">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="status of CD Drive"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetUSBMemoryFree" FunctionResponse="ONCE" Description="Returns the amount of unused space of USB in MB">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="unused space of USB in MB"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetUSBMemoryTotal" FunctionResponse="ONCE" Description="Returns the total size of USB in MB">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="total size of USB in MB"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetUSBMediaStatus" FunctionResponse="ONCE" Description="Returns the status for USB">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="status for USB"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetBTLinkQuality" FunctionResponse="ONCE" Description="Returns the link quality of BT">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="link quality of BT"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetBTRSSI" FunctionResponse="ONCE" Description="Returns the RSSI of BT">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="RSSI of BT"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetFGSHWVersion" FunctionResponse="ONCE" Description="returns the FGS HW Version as string">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="FGS HW Version as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetArionPlatformVersion" FunctionResponse="ONCE" Description="returns the Arion Platform Version as string">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Arion Platform Version as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetBTApplVersionDate" FunctionResponse="ONCE" Description="returns the BT Application Version Date as string">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="BT Application Version Date as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetBTApplMsgCatalogVersion" FunctionResponse="ONCE" Description="returns the BT Application Msg Catalog Version as string">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="BT Application Msg Catalog Version as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetBTApplInterfaceVersion" FunctionResponse="ONCE" Description="returns the BT Application Interface Version as string">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="BT Application Interface Version as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTemperatureAmplifier" FunctionResponse="ONCE" Description="Returns the Amplifier Temperature">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="AmplifierTemperature as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ClearErrorStore" FunctionResponse="NONE" Description="clears the memory which contains the errorcodes" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ClearResetCounterValues" FunctionResponse="NONE" Description="Deletes all values about the reset counter" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="DecreaseDABFader" FunctionResponse="NONE" Description="decreases the value of the selected fader until min-range is reached" Comment="Plus">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Fader" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="fadertype">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="fader FM to DAB"/>
+                                <Value Value="1" Meaning="fader DAB to FM"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetActiveTuner" FunctionResponse="ONCE" Description="Returns the active Tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Tuner">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="Tuner 1"/>
+                            <Value Value="1" Meaning="Tuner 2"/>
+                            <Value Value="2" Meaning="Tuner 3"/>
+                            <Value Value="3" Meaning="Tuner 4"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+      </DeviceFunction>
+        <DeviceFunction FunctionName="GetAF" FunctionResponse="ONCE" Description="Returns if AF is activated or not." Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="false=AF inactice, true=AF active"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetAngle" FunctionResponse="ONCE" Description="returns the steering wheel angle" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the steeringwheel angle as strng" Comment=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetBestSatellite" FunctionResponse="ONCE" Description="Returns an integer for the specified GPS satellite" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Range: 0-50">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="50" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Satellite" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="Specified satellite">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="1" Meaning="Best satellite 1"/>
+                                <Value Value="2" Meaning="Best satellite 2"/>
+                                <Value Value="3" Meaning="Best satellite 3"/>
+                                <Value Value="4" Meaning="Best satellite 4"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCANAnalogMute" FunctionResponse="ONCE" Description="Returns value of Analog Mute" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Analog Mute on, off">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="on" Meaning="Analog Mute on"/>
+                            <Value Value="off" Meaning="Analog Mute off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCANKL15" FunctionResponse="ONCE" Description="Returns value of KL15" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="KL 15 on, off">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="on" Meaning="KL 15 on"/>
+                            <Value Value="off" Meaning="KL 15 off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCANKL58D" FunctionResponse="ONCE" Description="Returns value of KL 58 d" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="KL 58 d on, off">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="on" Meaning="KL 58 d on"/>
+                            <Value Value="off" Meaning="KL 58 d off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCANMuteBit" FunctionResponse="ONCE" Description="Returns value of Mute Bit" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Mute Bit on, off">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="on" Meaning="Mute Bit on"/>
+                            <Value Value="off" Meaning="Mute Bit off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCANMuteValue" FunctionResponse="ONCE" Description="Returns value of Mute" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Mute Value on, off">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="on" Meaning="Mute Value on"/>
+                            <Value Value="off" Meaning="Mute Value off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCANReverseGear" FunctionResponse="ONCE" Description="Returns value of Reverse Gear" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Reverse Gear on, off">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="on" Meaning="Reverse Gear on"/>
+                            <Value Value="off" Meaning="Reverse Gear off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCANSKontakt" FunctionResponse="ONCE" Description="Returns value of S-Kontakt" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="S-Kontakt on, off">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="on" Meaning="S-Kontakt on"/>
+                            <Value Value="off" Meaning="S-Kontakt off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCANSpeedSignal" FunctionResponse="ONCE" Description="Returns value of Speed Signal" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Speed Signal as string. E.g. 30 km/h"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCogCount" FunctionResponse="ONCE" Description="Returns the cog count" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="The cog count as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCurrentDABFader" FunctionResponse="ONCE" Description="Returns values of the selected fader" Comment="Plus">
+            <ReturnValue ReturnType="DATA_TYPE_SINT" Description="data of the fader">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="-40" MinValue="-60"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Fader" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="fadertype">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="fader FM to DAB"/>
+                                <Value Value="1" Meaning="fader DAB to FM"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABConcealmentLevelValue" FunctionResponse="ONCE" Description="Returns value of DAB concealment level" Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="DAB concealment level value" Comment="0=off">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="9" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFM_LINK_Frequency" FunctionResponse="ONCE" Description="Returns the frequency for FM-Link tuner as string including the unit." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the frequency for FM-Link tuner as string including the unit."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFM_Link_PI" FunctionResponse="ONCE" Description="Returns the PI for the FM-Link tuner." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the PI for the FM-Link tuner."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABFM_Link_Quality" FunctionResponse="ONCE" Description="Returns thequality for the FM-Link tuner." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns thequality for the FM-Link tuner."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueAC" FunctionResponse="ONCE" Description="Returns the AC value." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the AC value."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueAS" FunctionResponse="ONCE" Description="Returns the AS value." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the AS value."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueASU" FunctionResponse="ONCE" Description="Returns the ASUvalue." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the ASUvalue."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueASW" FunctionResponse="ONCE" Description="Returns the ASW value." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the ASW value."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueAudioQuality" FunctionResponse="ONCE" Description="Returns the audio quality." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the audio quality.">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="99" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueAudioSamplingRate" FunctionResponse="ONCE" Description="Returns the audio sampling rate." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the audio sampling rate."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueBER" FunctionResponse="ONCE" Description="Returns the DAB FIC bit error rate." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB FIC bit error rate."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueBitrate" FunctionResponse="ONCE" Description="Returns the DAB audio bit rate." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB audio bit rate."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueChannel" FunctionResponse="ONCE" Description="Returns the DAB channel." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB channel as String"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueComponenShorttLabel" FunctionResponse="ONCE" Description="Returns the DAB component short label." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB component short label."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueComponentID" FunctionResponse="ONCE" Description="Returns the DAB component ID." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB component ID."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueComponentLabel" FunctionResponse="ONCE" Description="Returns the DAB component label." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB component label."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueDABMode" FunctionResponse="ONCE" Description="Returns the DAB mode." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB mode.">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="4" MinValue="1"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueDRC" FunctionResponse="ONCE" Description="Returns the DRC value." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DRC value.1=yes, 0=no"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueEnsembleID" FunctionResponse="ONCE" Description="Returns the DAB ensemble ID." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB ensemble ID."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueEnsembleLabel" FunctionResponse="ONCE" Description="Returns the DAB ensemble label." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB ensemble label."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueEnsembleShortLabel" FunctionResponse="ONCE" Description="Returns the DAB ensemble short label." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB ensemble short label."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueFieldStrength" FunctionResponse="ONCE" Description="Returns the DAB field strength." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB-field strength String."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueMode" FunctionResponse="ONCE" Description="Returns the DAB mode." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB-mode as String"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueMSC" FunctionResponse="ONCE" Description="Returns the DAB MSC bit error rate." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB MSC bit error rate."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueMute" FunctionResponse="ONCE" Description="Returns whether mute is active or not." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns whether mute is active or not..1=mute, 0=no mute"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueProtectionLevel" FunctionResponse="ONCE" Description="Returns the protection level." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the protection level.">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="5" MinValue="1"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValuePTY" FunctionResponse="ONCE" Description="Returns the PTY value." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the PTY value."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValues" FunctionResponse="ONCE" Description="Deprecated and was splitted up into seperated calls with naming GetDABMonitorValue..." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_DYN_ARRAY_STRING" Description="DAB monitor entry;ValueRange={Frequence, Channel, Mode, Region, FieldStrength, BER, MSC, EnsembleName, Service, AltFMServiceStation, Bitrate, TA, DRC, SCT}"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueSCID" FunctionResponse="ONCE" Description="Returns the SCID value." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the SCID value."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueServiceFollowing" FunctionResponse="ONCE" Description="Returns whether service following is active or not." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns whether service following is active or not.1=service following activ,0=no SF"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueServiceID" FunctionResponse="ONCE" Description="Returns the DAB service ID." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB service ID."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueServiceLabel" FunctionResponse="ONCE" Description="Returns the DAB service label." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB service label."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueServiceSF" FunctionResponse="ONCE" Description="Returns the DAB service following status." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB service following status."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueServiceShortLabel" FunctionResponse="ONCE" Description="Returns the DAB service short label." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the DAB service short label."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueStereoMode" FunctionResponse="ONCE" Description="Returns the active stereo mode." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the active stereo mode.SC=Single Channel,DC=Dual Channel,ST=Stereo,JS=Joined Stereo"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueSync" FunctionResponse="ONCE" Description="Returns the sync state" Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the sync state.1=sync, 0=no sync"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABMonitorValueTMC" FunctionResponse="ONCE" Description="Returns whether or not TMC is supported or not." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns whether or not TMC is supported or not. 1=Support for TMX data, 0= no TMC"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABReceptionValue" FunctionResponse="ONCE" Description="Returns value of DAB-Reception" Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="DAB-Reception value">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="digital"/>
+                            <Value Value="1" Meaning="analog"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABServiceLinking_Count" FunctionResponse="ONCE" Description="returns the number of service linking items" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="number of service linking items"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABServiceLinkingFreqLabel" FunctionResponse="ONCE" Description="Return the frequency label for specified row." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Return the frequency label for specified row."/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the index in the list"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABServiceLinkingLinktype" FunctionResponse="ONCE" Description="Return the link type for specified row." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Return the link type for specified row."/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the index in the list"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABServiceLinkingPI" FunctionResponse="ONCE" Description="Return the PI for specified row." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Return the PI for specified row."/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the index in the list"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABServiceLinkingQuality" FunctionResponse="ONCE" Description="Return the quality for specified row." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Return the quality for specified row."/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the index in the list"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABServiceLinkingValue" FunctionResponse="ONCE" Description="Returns value of DAB-Service-Linking (on/off)" Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="ServiceLinking-Value value">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="off"/>
+                            <Value Value="1" Meaning="DAB"/>
+                            <Value Value="2" Meaning="DAB/FM"/>
+                            <Value Value="3" Meaning="FM"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABTP_Frequency" FunctionResponse="ONCE" Description="Returns the frequency of the TP tuner." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the frequency of the TP tuner."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABTP_PI" FunctionResponse="ONCE" Description="Returns the PI of the TP tuner." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the PI of the TP tuner."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDABTP_Quality" FunctionResponse="ONCE" Description="Returns the qualityof the TP tuner." Comment="B2Plus">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the qualityof the TP tuner."/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDeadReckoningValues" FunctionResponse="ONCE" Description="Returns values about the dead reckoning" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="dead reckoning value"/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the index in the list">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Status"/>
+                                <Value Value="1" Meaning="Speed"/>
+                                <Value Value="2" Meaning="Accurancy"/>
+                                <Value Value="3" Meaning="Sensor status"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetFreezeBackgroundTuner" FunctionResponse="ONCE" Description="Returns if Freeze Backgroung Tuner is activated" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="false=Freeze inactice, true=Freeze active"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetDDAStatus" FunctionResponse="ONCE" Description="Returns if DDA is On/Off" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="false=DDA Off, true=DDA On"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetGPSValues" FunctionResponse="ONCE" Description="Returns values about the GPS" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="GPS value"/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the index in the list">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Ephemerides"/>
+                                <Value Value="1" Meaning="GPS antenna status"/>
+                                <Value Value="2" Meaning="GPS tracking status"/>
+                                <Value Value="3" Meaning="Satellites visible"/>
+                                <Value Value="4" Meaning="Satellites tracked,"/>
+                                <Value Value="5" Meaning="GPS longitude"/>
+                                <Value Value="6" Meaning="GPS latitude"/>
+                                <Value Value="7" Meaning="GPS altitude"/>
+                                <Value Value="8" Meaning="GPS HDOP"/>
+                                <Value Value="9" Meaning="GPS PDOP"/>
+                                <Value Value="10" Meaning="GPS heading"/>
+                                <Value Value="11" Meaning="GPS date"/>
+                                <Value Value="12" Meaning="GPS time"/>
+                                <Value Value="13" Meaning="Almanach status"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetLinearAudio" FunctionResponse="ONCE" Description="Returns wether or not Linear Audio is activated or not. Requested by BP" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="0= Linear Audio deactivated, 1=Linar Audio activated"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetMapInfoValues" FunctionResponse="ONCE" Description="Returns values for the map info of CD or SD" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="requested map info value"/>
+            <Parameters>
+                <Parameter Name="Medium" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the index in the list">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="CD Map Info String"/>
+                                <Value Value="1" Meaning="SD Map Info String"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetMatchedPositionValues" FunctionResponse="ONCE" Description="Returns values about the matched position" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="matched position value"/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the index in the list">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Latitude"/>
+                                <Value Value="1" Meaning="Longitude"/>
+                                <Value Value="2" Meaning="Heading"/>
+                                <Value Value="3" Meaning="Altitude"/>
+                                <Value Value="4" Meaning="Gradient"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetMediaStatus" FunctionResponse="ONCE" Description="Returns the status for the CD or SD drive" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="0 unknown 1 NO_MEDIA         2 INSERTION 3 INCORRECT      4 AUDIO 5 DATA 6 DATA_MP3 7 SW_UPDATE_CD 8 not used 9 NAV    10 DATA_UNKNOWN 11 DATA_MP3_NAV 12 not used 13 DATA_MP3_NO_NAV 14 DATA_NAV_NO_MP3 15 unknown 16 unknown  17 EJECT 18 MEDIA_IN_SLOT  ">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="unknown"/>
+                            <Value Value="1" Meaning="NO_MEDIA        "/>
+                            <Value Value="2" Meaning="INSERTION"/>
+                            <Value Value="3" Meaning="INCORRECT     "/>
+                            <Value Value="4" Meaning="AUDIO"/>
+                            <Value Value="5" Meaning="DATA"/>
+                            <Value Value="6" Meaning="DATA_MP3"/>
+                            <Value Value="7" Meaning="not used"/>
+                            <Value Value="8" Meaning="not used"/>
+                            <Value Value="9" Meaning="NAV"/>
+                            <Value Value="10" Meaning="DATA_UNKNOWN"/>
+                            <Value Value="11" Meaning="DATA_MP3_NAV"/>
+                            <Value Value="12" Meaning="not used"/>
+                            <Value Value="13" Meaning=" DATA_MP3_NO_NAV"/>
+                            <Value Value="14" Meaning="DATA_NAV_NO_MP3"/>
+                            <Value Value="15" Meaning="unknown"/>
+                            <Value Value="16" Meaning="unknown"/>
+                            <Value Value="17" Meaning="EJECT"/>
+                            <Value Value="18" Meaning="MEDIA_IN_SLOT"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Drive" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Specified drive">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="CD drive"/>
+                                <Value Value="1" Meaning="SD drive"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetOdometerDataUpdate" FunctionResponse="NONE" Description="Returns the value for Odometer status and Odometer pulse counter" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT"/>
+            <Parameters>
+                <Parameter Name="OdometerData" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="0" Description="Odometer status or pulse counter">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Odometer Status"/>
+                                <Value Value="1" Meaning="Odometer Pulse Counter"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>           
+        <DeviceFunction FunctionName="GetResetCounterValue" FunctionResponse="NONE" Description="Returns the value for the given reset counter" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING"/>
+            <Parameters>
+                <Parameter Name="Counter" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="Number of Reset Counter">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="1" Meaning="Watchdog Reset"/>
+                                <Value Value="2" Meaning="App. Assertion Failed"/>
+                                <Value Value="3" Meaning="Processor Exception"/>
+                                <Value Value="4" Meaning="SPM App. Control Error"/>
+                                <Value Value="5" Meaning="Reset of the FGS"/>
+                                <Value Value="6" Meaning="Reset Request Download"/>
+                                <Value Value="7" Meaning="Reset Request Diag."/>
+                                <Value Value="8" Meaning="Other"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetSDTrace" FunctionResponse="ONCE" Description="Returns if SD Trace is activated or not." Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="false=SD Trace inactice, true=SD Trace active"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetServiceModeFieldStrength" FunctionResponse="ONCE" Description="Returns the field strength for the servicemode" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="FieldStrength, banddependend between 20-60 dBuV">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="60" MinValue="20"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Type" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="AM"/>
+                                <Value Value="1" Meaning="FM"/>
+                                <Value Value="2" Meaning="DAB"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+            <!---->
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetServiceModeQualityIndicatorValue" FunctionResponse="ONCE" Description="Returns the current progressbar value of the quality indicator for servicemode iboc" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Current value between 0..15">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="15" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <!---->
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetServiceModeQualityString" FunctionResponse="ONCE" Description="Returns the service quality as string" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Quality as String"/>
+            <Parameters>
+                <Parameter Name="Type" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="AM"/>
+                                <Value Value="1" Meaning="FM"/>
+                                <Value Value="2" Meaning="DAB"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+            <!---->
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetSetupHighcut" FunctionResponse="ONCE" Description="Returns currently selected highcut in radio setup " Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Value Range 0-7">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="7" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetSetupSharx" FunctionResponse="ONCE" Description="Returns current sharx value for setup" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="0=auto, 1=Level 0, 2=Level 1, 3= Level 2, 4= Level 3">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="Sharx auto"/>
+                            <Value Value="1" Meaning="Sharx Level 0"/>
+                            <Value Value="2" Meaning="Sharx Level 1"/>
+                            <Value Value="3" Meaning="Sharx Level 2"/>
+                            <Value Value="4" Meaning="Sharx Level 3"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTemperatureDisplay" FunctionResponse="ONCE" Description="Returns the Display Temperature" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Display Temperature as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTemperatureGPS" FunctionResponse="ONCE" Description="Returns the GPS Temperature" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="GPS Temperature as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCLastMsgTimeDate" FunctionResponse="ONCE" Description="Returns the time and date of the last TMC message" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="The time and date of the last TMC message as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCNoOfMsgs" FunctionResponse="ONCE" Description="Returns the number of TMC messages" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="The number of TMC messages as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCNoOfMsgsSelectionArea" FunctionResponse="ONCE" Description="Returns the number of TMC messages in selection area" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="The number of TMC messages in selection area as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCStation" FunctionResponse="ONCE" Description="returns information about the station with the given index of a list that contains only stations which are supporting TMC" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="information about the TMC station;ValueRange={Name, Frequency, Country Code, Details}" Comment="Frequency comes as a preformatted string, country code as a string(e.g. 'D' or 'GB'), Details come as a preformatted string "/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="listindex of the described list;ValueRange=0- lenght of 'TMC-supporting-stations' -1" Comment="get lenght by calling GetTMCStation_Count"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCStation_Count" FunctionResponse="ONCE" Description="returns the number of stations in the TMC list" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="number of TMC stations"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCStationCountryCode" FunctionResponse="ONCE" Description="returns the Country Code of the active TMC station" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Country Code of the currently tuned TMC station as string" Comment=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCStationLTN" FunctionResponse="ONCE" Description="returns the Localtion Table Number for the active TMC station" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Service ID of currently tuned TMC Station." Comment="Value Range: 0-99">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="99" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCStationPI" FunctionResponse="ONCE" Description="returns the Program Identifier Name of the active TMC station" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the PI of the currently tuned TMC station as string" Comment=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCStationPS" FunctionResponse="ONCE" Description="returns the PS Name of the current TMC station" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the PS of the currently tuned TMC station as string" Comment=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCStationQuality" FunctionResponse="ONCE" Description="returns the Quality of the active TMC station" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Quality of the currently tuned TMC station as string" Comment="Value Range: poor, weak, stereo">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="poor" Meaning="Quality poor"/>
+                            <Value Value="weak" Meaning="Quality weak"/>
+                            <Value Value="stereo" Meaning="Quality stereo"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTMCStationSID" FunctionResponse="ONCE" Description="returns the Service ID for the active TMC station" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Returns the Service ID of currently tuned TMC Station." Comment="Value Range: 0-99">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="99" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerAF" FunctionResponse="ONCE" Description="Return current AF" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Range: 0-1">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="AF no"/>
+                            <Value Value="1" Meaning="AF yes"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0 (AM, FM)"/>
+                                <Value Value="1" Meaning="Tuner 1 (FM)"/>
+                                <Value Value="2" Meaning="Tuner 2 (DAB)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerAFListCount" FunctionResponse="ONCE" Description="Returns the number elements in the AF list. GetTunerAF was splitted into two calls." Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Items in AF list."/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0 (AM, FM)"/>
+                                <Value Value="1" Meaning="Tuner 1 (FM)"/>
+                                <Value Value="2" Meaning="Tuner 2 (DAB)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerAFListIndex" FunctionResponse="ONCE" Description="Returns the item with the given index. GetTunerAF was splitted into two calls." Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="AF list item with given index."/>
+            <Parameters>
+                <Parameter Name="Index" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="" Comment="index which item should be returned."/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerAntenna1" FunctionResponse="ONCE" Description="Returns tuner antenna 1" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="antenna on, off. Range 0, 1">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="on" Meaning="Antenna 1 on"/>
+                            <Value Value="off" Meaning="Antenna 1 off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0 (AM, FM)"/>
+                                <Value Value="1" Meaning="Tuner 1 (FM)"/>
+                                <Value Value="2" Meaning="Tuner 2 (DAB)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerAntenna2" FunctionResponse="ONCE" Description="Returns tuner antenna 2" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Mute Value as string"/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0 (AM, FM)"/>
+                                <Value Value="1" Meaning="Tuner 1 (FM)"/>
+                                <Value Value="2" Meaning="Tuner 2 (DAB)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerBER" FunctionResponse="ONCE" Description="Return current BER" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="value range 1..4">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="4" MinValue="1"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0 (AM, FM)"/>
+                                <Value Value="1" Meaning="Tuner 1 (FM)"/>
+                                <Value Value="2" Meaning="Tuner 2 (DAB)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerFrequency" FunctionResponse="ONCE" Description="Returns the frequency of specified tuner as a formatted string (FMT_FREQUENCY)" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the frequency of specified tuner as a formatted string (FMT_FREQUENCY). "/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0"/>
+                                <Value Value="1" Meaning="Tuner 1"/>
+                                <Value Value="2" Meaning="Tuner 2"/>
+                                <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerFrequencyUnit" FunctionResponse="ONCE" Description="Returns unit for frequency of tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Unit as string"/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0 (AM, FM)"/>
+                                <Value Value="1" Meaning="Tuner 0 (FM)"/>
+                                <Value Value="2" Meaning="Tuner 0 (DAB)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerFS" FunctionResponse="ONCE" Description="Returns the Field Strength for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Value Range: 0-99">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="99" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0"/>
+                                <Value Value="1" Meaning="Tuner 1"/>
+                                <Value Value="2" Meaning="Tuner 2"/>
+                                <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerCalData" FunctionResponse="ONCE" Description="Returns the calibration data" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the Calibration Data"/>
+              <Parameters>
+                <Parameter Name="Calibration" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-4">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Calibration of FM in tuner 0"/>
+                                <Value Value="1" Meaning="Calibration of FM in tuner 1"/>
+                                <Value Value="2" Meaning="Calibration of FM in tuner 2"/>
+                                <Value Value="3" Meaning="Calibration of FM in tuner 3"/>
+                                <Value Value="4" Meaning="Calibration of AM"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ExitAFList" FunctionResponse="ONCE" Description="Called at the exit of the AF List" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerHC" FunctionResponse="ONCE" Description="Returns High Cut for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Range: 0-7">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="7" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0"/>
+                                <Value Value="1" Meaning="Tuner 1"/>
+                                <Value Value="2" Meaning="Tuner 2"/>
+                                <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerHUB" FunctionResponse="ONCE" Description="Returns HUB value of the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Range: 0-7F"/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0"/>
+                                <Value Value="1" Meaning="Tuner 1"/>
+                                <Value Value="2" Meaning="Tuner 2"/>
+                                <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerMode" FunctionResponse="ONCE" Description="Returns Tuner Mode" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Value Range:0-3 ">
+              <ReturnValueDescription>
+                <ValueRange>
+                  <Enumeration>
+                    <Value Value="0" Meaning="Customer"/>
+                    <Value Value="1" Meaning="DDA"/>
+                    <Value Value="2" Meaning="DDS"/>
+                    <Value Value="3" Meaning="Single"/>
+                  </Enumeration>
+                </ValueRange>
+              </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerModeSetup" FunctionResponse="ONCE" Description="Returns current Tuner Mode for Radio Setup" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="value range 0 - 4 0=auto, 1=DDS, 2=DDA, 3=Single, 4=Cal">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="Tuner Mode auto"/>
+                            <Value Value="1" Meaning="Tuner Mode DDS"/>
+                            <Value Value="2" Meaning="Tuner Mode DDA"/>
+                            <Value Value="3" Meaning="Tuner Mode Single"/>
+                            <Value Value="4" Meaning="Tuner Mode Cal"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerMultiPath" FunctionResponse="ONCE" Description="Returns Multipath value for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="value range 0-FF"/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0"/>
+                                <Value Value="1" Meaning="Tuner 1"/>
+                                <Value Value="2" Meaning="Tuner 2"/>
+                                <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="GetActiveBand" FunctionResponse="ONCE" Description="Return active band in the specified tuner" Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_UINT" Description="value 0=FM, 1=DAB , 2=AM"/>
+        <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                  <Value Value="0" Meaning="Tuner 0"/>
+                  <Value Value="1" Meaning="Tuner 1"/>
+                  <Value Value="2" Meaning="Tuner 2"/>
+                  <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="SetActiveBand" FunctionResponse="ONCE" Description="Sets active band in the active tuner" Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+         <Parameters>
+          <Parameter Name="Band" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the band which should be activated">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="FM"/>
+                  <Value Value="2" Meaning="AM"/>
+                 </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerNeighbourChannel" FunctionResponse="ONCE" Description="ReturnsNeighbourChannel" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Values 0-3F"/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                              <Value Value="0" Meaning="Tuner 0"/>
+                              <Value Value="1" Meaning="Tuner 1"/>
+                              <Value Value="2" Meaning="Tuner 2"/>
+                              <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="GetTunerMeasureMode" FunctionResponse="ONCE" Description="returns the measure mode of the requested tuner" Comment="B1">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="0=Off 1=On"/>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="GetTunerRDSReg" FunctionResponse="ONCE" Description="returns the RDS Reg of the requested tuner" Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="0=Fix 1=Auto"/>
+      </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerPI" FunctionResponse="ONCE" Description="Returns PI value for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description=""/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                              <Value Value="0" Meaning="Tuner 0"/>
+                              <Value Value="1" Meaning="Tuner 1"/>
+                              <Value Value="2" Meaning="Tuner 2"/>
+                              <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerPS" FunctionResponse="ONCE" Description="Return current PS" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description=""/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0 (AM, FM)"/>
+                                <Value Value="1" Meaning="Tuner 1 (FM)"/>
+                                <Value Value="2" Meaning="Tuner 2 (DAB)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerRDSErrorRate" FunctionResponse="ONCE" Description="Returns RDS error rate for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Values: 0-99">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="99" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0"/>
+                                <Value Value="1" Meaning="Tuner 1"/>
+                                <Value Value="2" Meaning="Tuner 2"/>
+                                <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerRDSErrorRateService" FunctionResponse="ONCE" Description="Returns RDS error rate" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Values 1...4">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="4" MinValue="1"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0 (AM, FM)"/>
+                                <Value Value="1" Meaning="Tuner 1 (FM)"/>
+                                <Value Value="2" Meaning="Tuner 2 (DAB)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerSharx" FunctionResponse="ONCE" Description="Returns Sharx value for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Range: 0-6">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Range StepSize="1" MaxValue="6" MinValue="0"/>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0"/>
+                                <Value Value="1" Meaning="Tuner 1"/>
+                                <Value Value="2" Meaning="Tuner 2"/>
+                                <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerSignalQuality" FunctionResponse="ONCE" Description="Returns Tuner signal quality for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="value range 0...1F"/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                              <Value Value="0" Meaning="Tuner 0"/>
+                              <Value Value="1" Meaning="Tuner 1"/>
+                              <Value Value="2" Meaning="Tuner 2"/>
+                              <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="GetTunerCS" FunctionResponse="ONCE" Description="Returns channel separation for the requested tuner" Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Channel separation in dB"/>
+        <Parameters>
+          <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="Tuner 0"/>
+                  <Value Value="1" Meaning="Tuner 1"/>
+                  <Value Value="2" Meaning="Tuner 2"/>
+                  <Value Value="3" Meaning="Tuner 3"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="GetTASetup" FunctionResponse="ONCE" Description="Returns TA setup for all the tuners" Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="Returns the TA setup for all the tuners"/>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="ToggleTASetup" FunctionResponse="ONCE" Description="Sets TA for all the tuners" Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+       </DeviceFunction>
+       <DeviceFunction FunctionName="GetTunerPD" FunctionResponse="ONCE" Description="Returns the Phase Diversity for the requested tuner" Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Value Range: DDS1, DDS2, DDA, Single, Customer">
+          <ReturnValueDescription>
+            <ValueRange>
+              <Enumeration>
+                <Value Value="DDS1" Meaning="Tuner Mode DDS1"/>
+                <Value Value="DDS2" Meaning="Tuner Mode DDS2"/>
+                <Value Value="DDA" Meaning="Tuner Mode DDA"/>
+                <Value Value="Single" Meaning="Tuner Mode Single"/>
+                <Value Value="Customer" Meaning="Tuner Mode Customer"/>
+              </Enumeration>
+            </ValueRange>
+          </ReturnValueDescription>
+        </ReturnValue>
+       <Parameters>
+        <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+          <ParameterDescription>
+            <ValueRange>
+              <Enumeration>
+                <Value Value="0" Meaning="Tuner 0"/>
+                <Value Value="1" Meaning="Tuner 1"/>
+                <Value Value="2" Meaning="Tuner 2"/>
+                <Value Value="3" Meaning="Tuner 3"/>
+              </Enumeration>
+            </ValueRange>
+          </ParameterDescription>
+        </Parameter>
+        </Parameters>
+      </DeviceFunction>
+        <DeviceFunction FunctionName="ToggleRDSReg" FunctionResponse="ONCE" Description="Toggle the value of RDS Reg" Comment="">
+          <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+        </DeviceFunction>
+          <DeviceFunction FunctionName="ToggleMeasureMode" FunctionResponse="ONCE" Description="Toggle the value of Measure Mode" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+           </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerTA" FunctionResponse="ONCE" Description="Returns TA status for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Values:  0=no, 1=yes">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="TA no"/>
+                            <Value Value="1" Meaning="TA yes"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0"/>
+                                <Value Value="1" Meaning="Tuner 1"/>
+                                <Value Value="2" Meaning="Tuner 2"/>
+                                <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetTunerTP" FunctionResponse="ONCE" Description="Returns TP status for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Values:  0=no, 1=yes">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="TP no"/>
+                            <Value Value="1" Meaning="TP yes"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0"/>
+                                <Value Value="1" Meaning="Tuner 1"/>
+                                <Value Value="2" Meaning="Tuner 2"/>
+                                <Value Value="3" Meaning="Tuner 3"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetValidAFItem" FunctionResponse="ONCE" Description="Returns the selected entry of the AF list" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="AF entry"/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the index in the list">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Range StepSize="1" MaxValue="5" MinValue="0"/>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetValidAFItemCount" FunctionResponse="ONCE" Description="Returns the count of the AF list" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="AF entry count"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetVersion" FunctionResponse="ONCE" Description="Returns the requested version as string" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description=""/>
+            <Parameters>
+                <Parameter Name="Version" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested version">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="CUSTOMER_VERSION"/>
+                                <Value Value="1" Meaning="BUILDVERSION_CUSTVERSTRING"/>
+                                <Value Value="2" Meaning="BUILDVERSION_LABEL"/>
+                                <Value Value="3" Meaning="NAVI_REGISTRY_VERSION"/>
+                                <Value Value="4" Meaning="ADR_SW_VERSION"/>
+                                <Value Value="5" Meaning="CPLD_VERSION"/>
+                                <Value Value="6" Meaning="CONFIG_PART_NUMBER"/>
+                                <Value Value="7" Meaning="BOSCH_CONFIGURATION_ID"/>
+                                <Value Value="8" Meaning="CD_MODULE_VERSION"/>
+                                <Value Value="9" Meaning="HARDWARE_VERSION"/>
+                                <Value Value="10" Meaning="BT_MODULE_VERSION"/>
+                                <Value Value="11" Meaning="BT_FIRMWARE_VERSION"/>
+                                <Value Value="12" Meaning="SD_CARD_NUMBER"/>
+                                <Value Value="13" Meaning="ORDER_NUMBER"/>
+                                <Value Value="14" Meaning="SERIAL_NUMBER"/>
+                                <Value Value="15" Meaning="METER_VERSION_AUDIO"/>
+                                <Value Value="16" Meaning="METER_VERSION_NAVI"/>
+                                <Value Value="17" Meaning="METER_VERSION_SWC"/>
+                                <Value Value="18" Meaning="MCAN_BOSE_AMF"/>
+                                <Value Value="19" Meaning="APPS_NUMBER"/>
+                                <Value Value="20" Meaning="MCAN_TCU"/>
+                              <Value Value="21" Meaning="SYSTEM_VERSION"/>
+                              <Value Value="22" Meaning="SDCARD_VERSION"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestToggleECNREngineStatus" FunctionResponse="NONE" Description="Toggles status of the echo cancelation noise reduction engine." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestGetECNREngineStatus" FunctionResponse="NONE" Description="Gets status of the echo cancelation noise reduction engine." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="TRUE: EC/NR engine on. FALSE: EC/NR engine off.">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="true" Meaning="On"/>
+                            <Value Value="false" Meaning="Off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestSetHCIModeStatus" FunctionResponse="NONE" Description="Sets HCI Mode of the BT Module for running the accreditation tests." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Value" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="0" Description="TRUE = APL (application) mode. FALSE = HCI (hostcontroller interface) mode.">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="true" Meaning="On"/>
+                                <Value Value="false" Meaning="Off"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestGetHCIModeStatus" FunctionResponse="NONE" Description="Gets status of the echo cancelation noise reduction engine." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="TRUE = APL (application) mode. FALSE = HCI (hostcontroller interface) mode.">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="true" Meaning="On"/>
+                            <Value Value="false" Meaning="Off"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestSetFrequency" FunctionResponse="NONE" Description="sets the frequency to the value chosen in the drop down menu." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Value" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="value of the frequency">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="2402"/>
+                                <Value Value="1" Meaning="2441"/>
+                                <Value Value="2" Meaning="2480"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestGetFrequency" FunctionResponse="NONE" Description="gets the mapping value for the frequency chosen for the BT device" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="frequency value">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="2402 MHz"/>
+                            <Value Value="1" Meaning="2441 MHz"/>
+                            <Value Value="2" Meaning="2480 MHz"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestSetPacketType" FunctionResponse="NONE" Description="Sets the packet type for the test." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Value" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="packet type">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="DH5"/>
+                                <Value Value="1" Meaning="3DH5"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestGetPacketType" FunctionResponse="NONE" Description="Returns the mapping value corresponding to the packet type chosen for the test." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="packet type">
+                <ReturnValueDescription>
+                    <ValueRange>
+                        <Enumeration>
+                            <Value Value="0" Meaning="DH5 Size 339"/>
+                            <Value Value="1" Meaning="3DH5 Size 1021"/>
+                        </Enumeration>
+                    </ValueRange>
+                </ReturnValueDescription>
+            </ReturnValue>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="BTDevTestSetModulationValue" FunctionResponse="NONE" Description="Sets the modulation value for the test." Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        <Parameters>
+          <Parameter Name="Value" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Modulation value">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="0"/>
+                  <Value Value="1" Meaning="500"/>
+                  <Value Value="2" Meaning="1000"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="BTDevTestGetModulationValue" FunctionResponse="NONE" Description="Returns the mapping value corresponding to the modulation chosen for the test." Comment="">
+        <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Modulation">
+          <ReturnValueDescription>
+            <ValueRange>
+              <Enumeration>
+                <Value Value="0" Meaning="0 KHz"/>
+                <Value Value="1" Meaning="500 KHz"/>
+                <Value Value="2" Meaning="1000 KHz"/>
+              </Enumeration>
+            </ValueRange>
+          </ReturnValueDescription>
+        </ReturnValue>
+      </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevRunTest" FunctionResponse="NONE" Description="runs one of the tests for the BT device" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Test" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="test number">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="first test: EIRP + Frequency Range + Spurious Emission Transmitter"/>
+                                <Value Value="1" Meaning="second test: Frequency Hopping Requirements"/>
+                                <Value Value="2" Meaning="third test: Spurious Emission Receiver"/>
+                                <Value Value="3" Meaning="fourth test: To enable the device under test mode while the BT module is in HCI mode"/>
+                                <Value Value="4" Meaning="fifth test: Carrier only TX"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevStopTest" FunctionResponse="NONE" Description="ends the running test for the BT device" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestGetTestValues" FunctionResponse="NONE" Description="Gets some additional values of the parameters for each BT device test" Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="value of the test parameter as string"/>
+            <Parameters>
+                <Parameter Name="TestParameter" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Additional parameter of the BT device test.">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Testname"/>
+                                <Value Value="1" Meaning="CommandName"/>
+                                <Value Value="2" Meaning="PacketMode"/>
+                                <Value Value="3" Meaning="Modulation"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetWheel1RPM" FunctionResponse="ONCE" Description="returns RPM of wheel 1" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the rpm of wheel 1" Comment=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="BTDevTestGetLinkKey" FunctionResponse="ONCE" Description=" To display the LinkKey of connected phone" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns LinkKey of connected phone" Comment=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetWheel2RPM" FunctionResponse="ONCE" Description="returns RPM of wheel 2" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the rpm of wheel 2" Comment=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetWheel3RPM" FunctionResponse="ONCE" Description="returns RPM of wheel 3" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the rpm of wheel 3" Comment=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetWheel4RPM" FunctionResponse="ONCE" Description="returns RPM of wheel 4" Comment="B2">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns the rpm of wheel 4" Comment=""/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetWheelCircumference" FunctionResponse="ONCE" Description="Returns the  wheel circumference" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="The wheel circumference as string"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="IncreaseDABFader" FunctionResponse="NONE" Description="increases the value of the selected fader until max-range is reached" Comment="Plus">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Fader" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="fadertype">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="fader FM to DAB"/>
+                                <Value Value="1" Meaning="fader DAB to FM"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="IsAntenna2Available" FunctionResponse="ONCE" Description="Returns true if two antenna are installed in the car. In Skoda Variante only one antenna exists." Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="antenna 2 available"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="IsDevelopermodeEnabled" FunctionResponse="ONCE" Description="Returns whether Developermode was activated or not." Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="False=disabled;  True=enabled"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="RestoreDefaultSettings" FunctionResponse="NONE" Description="This call will set all user defined settings from developermode to default settings." Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SelectTMCStation" FunctionResponse="ONCE" Description="Selects a station from the TMC Stationlist for showing the details of this station" Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="listindex of the described list;ValueRange=0- lenght of 'TMC-supporting-stations' -1"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetActiveTuner" FunctionResponse="ONCE" Description="Sets the active Tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner" Comment="As mentioned below inn the parameter description">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 1"/>
+                                <Value Value="1" Meaning="Tuner 2"/>
+                                <Value Value="2" Meaning="Tuner 3"/>
+                                <Value Value="3" Meaning="Tuner 4"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetDABConcealmentLevelValue" FunctionResponse="NONE" Description="Sets the concealment level of dab in dab setup" Comment="Plus">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="ConcealmentLevelValue" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="new value" Comment="0=OFF">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Range StepSize="1" MaxValue="9" MinValue="0"/>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetDABFaderPosition" FunctionResponse="NONE" Description="sets th new value of the selected fader" Comment="Plus">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="Fader" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="fadertype;ValueRange=0,1" Comment="0=fader FM to DAB 1=fader DAB to FM">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="fader FM to DAB"/>
+                                <Value Value="1" Meaning="fader DAB to FM"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+                <Parameter Name="Value" Type="DATA_TYPE_SINT" Direction="IN" DefaultValue="0" Description="new value">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Range StepSize="1" MaxValue="-40" MinValue="-60"/>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetDABReceptionValue" FunctionResponse="NONE" Description="sets the new value of DAB-Reception" Comment="Plus">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="DABReceptionValue" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="new value">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="digital"/>
+                                <Value Value="1" Meaning="analog"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetDABServiceLinkingValue" FunctionResponse="NONE" Description="sets the new alue of DAB-Service-Linking (on/off)" Comment="Plus">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="ServiceLinkingValue" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="new value">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="OFF"/>
+                                <Value Value="1" Meaning="DAB"/>
+                                <Value Value="2" Meaning="DAB/FM"/>
+                                <Value Value="3" Meaning="FM"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="SetHighcut" FunctionResponse="ONCE" Description="Sets current HC" Comment="B1">
+        <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+        <Parameters>
+          <Parameter Name="Direction" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="0" Description="Highcut value" Comment="Value Range: 0- 1">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="false" Meaning="Decrement"/>
+                  <Value Value="true" Meaning="Increment"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="SetRadioTestModeActive" FunctionResponse="NONE" Description="Toggels the radio test mode to enabled or disabled." Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="enable" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="enable disable flag" Comment="0=enable, 1=disable">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="enable"/>
+                                <Value Value="1" Meaning="disable"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="SetSetupSharx" FunctionResponse="NONE" Description="Sets the sharx value " Comment="B1">
+        <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        <Parameters>
+          <Parameter Name="Direction" Type="DATA_TYPE_BOOL" Direction="IN" DefaultValue="0" Description="Decrement/Increment" Comment="true=increment, false=decrement">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="false" Meaning="Decrement"/>
+                  <Value Value="true" Meaning="Increment"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+        <DeviceFunction FunctionName="SetTunerModeSetup" FunctionResponse="ONCE" Description="Sets the Tuner mode in Radio Setup" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID" Description=""/>
+            <Parameters>
+                <Parameter Name="Mode" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="auto"/>
+                                <Value Value="1" Meaning="DDS"/>
+                                <Value Value="2" Meaning="DDA"/>
+                                <Value Value="2" Meaning="Single"/>
+                                <Value Value="2" Meaning="Cal"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="SetTuneToAF" FunctionResponse="NONE" Description="tunes to selected AF" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+            <Parameters>
+                <Parameter Name="ListEntryNr" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="tunes to this AF"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ToggelLinearAudio" FunctionResponse="NONE" Description="Toggles the Linea Audio value between true and false" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ToggleAFValue" FunctionResponse="NONE" Description="Toggles the AF value between true and false." Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ToggleFreezeBackgroundTuner" FunctionResponse="NONE" Description="Toggles the Freeze BackgroundTuner value between true and false." Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ToggleDDAState" FunctionResponse="NONE" Description="Toggles the DDA Status in the Tuner between True and False." Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="SetRadioTMEnter" FunctionResponse="NONE" Description="API to trigger the switch off of persistant data storage by ADR3 on entering testmode" Comment="B1">
+        <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+      </DeviceFunction>
+        <DeviceFunction FunctionName="ToggleSDTrace" FunctionResponse="NONE" Description="Toggles the SD Trace value between true and false." Comment="B">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCsmEngineering_Count" FunctionResponse="ONCE" Description="CsmEngineering data count" Comment="NISSAN LCN NAR NET#2 Sample">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description="CsmEngineering data count"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="StartCsmEngineering" FunctionResponse="NONE" Description="Start the CsmEngineering method of VD VehicleData(cyclic methodStart)." Comment="NISSAN LCN NAR NET#2 Sample">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetCsmEngineeringData" FunctionResponse="ONCE" Description="This function is uesed to get the CsmEngineering data of the VD VehicleData." Comment="NISSAN LCN NAR NET#2 Sample">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description="GetCsmEngineeringData content."/>
+            <Parameters>
+                <Parameter Name="ListEntryNumber" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="The index of the list;ValueRange=0-(GetCsmEngineering_Count-1)"/>
+            </Parameters>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="CreateScreenShot" FunctionResponse="ONCE" Description="Tries to create a screenShot" Comment="NISSAN LCN NAR NET#2 Sample">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetScreenShotState" FunctionResponse="ONCE" Description="Returns the state of last screen shot creation. FALSE = failure, TRUE = OK" Comment="NISSAN LCN NAR NET#2 Sample">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ToggleScreenShotSetting" FunctionResponse="ONCE" Description="Toggles the screen shot setting. Enable it if disabled and vice versa" Comment="NISSAN LCN NAR NET#2 Sample">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="GetScreenShotSetting" FunctionResponse="ONCE" Description="Returns the state of screen shot setting" Comment="NISSAN LCN NAR NET#2 Sample">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL"/>
+        </DeviceFunction>
+        <DeviceFunction FunctionName="ScreenShotResetState" FunctionResponse="ONCE" Description="Resets DPGUI__BOOL_SCREEN_SHOT_STATE to 128" Comment="NISSAN LCN NAR NET#2 Sample">
+            <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        </DeviceFunction>
+      <DeviceFunction FunctionName="GetSXMServiceDTMMonData" FunctionResponse="ONCE" Description="Get SXM DTM data" Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_STRING" Description=""/>
+        <Parameters>
+          <Parameter Name="LineNo" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="SigQuality"/>
+                  <Value Value="1" Meaning="Tuner Status"/>
+                  <Value Value="2" Meaning="Lock EnsA"/>
+                  <Value Value="3" Meaning="Lock EnsB"/>
+                  <Value Value="4" Meaning="BER"/>
+                  <Value Value="5" Meaning="C/N"/>
+                  <Value Value="6" Meaning="C/N"/>
+                  <Value Value="7" Meaning="RS"/>
+                  <Value Value="8" Meaning="Tuner Freq"/>
+                  <Value Value="9" Meaning="RSSI"/>
+                  <Value Value="10" Meaning="Overlay Status"/>
+                  <Value Value="11" Meaning="OBERA"/>
+                  <Value Value="12" Meaning="OBERB"/>
+                  <Value Value="13" Meaning="ORS"/>
+                  <Value Value="14" Meaning="Capability"/>
+                  <Value Value="15" Meaning="Mod Type"/>
+                  <Value Value="16" Meaning="Mod HW"/>
+                  <Value Value="17" Meaning="Mod SW"/>
+                  <Value Value="18" Meaning="SXI"/>
+                  <Value Value="19" Meaning="BB"/>
+                  <Value Value="20" Meaning="HDEC"/>
+                  <Value Value="21" Meaning="RF"/>
+                  <Value Value="22" Meaning="HMI"/>
+                  <Value Value="23" Meaning="CGS DB"/>
+                  <Value Value="24" Meaning="Fuel DB"/>
+                  <Value Value="25" Meaning="Movie DB"/>
+                  <Value Value="26" Meaning="Tab Weather DB"/>
+                  <Value Value="27" Meaning="Stock DB"/>
+                  <Value Value="28" Meaning="Safeview DB"/>
+                  <Value Value="29" Meaning="SMS"/>
+                  <Value Value="30" Meaning="Sub Status"/>
+                  <Value Value="31" Meaning="Reason Code"/>
+                  <Value Value="32" Meaning="Suspend Date"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="ActivateSXMDTM" FunctionResponse="ONCE" Description=" This API is called when user enter in to SXM DTM screen " Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        <Parameters>
+          <Parameter Name="Action" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="1" Description="Type of action with respect to diag screen (Enter/Exit)" Comment="the types are defined in the below enumeration">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="Exit from diag screen"/>
+                  <Value Value="1" Meaning="Enter in to diag screen"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="ClearSXMDTMFunctions" FunctionResponse="ONCE" Description=" To clear SXM functions " Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+        <Parameters>
+          <Parameter Name="LineNo" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="CLEAR NVM"/>
+                  <Value Value="1" Meaning="CLEAR CGS"/>
+                  <Value Value="2" Meaning="CLEAR Fuel"/>
+                  <Value Value="3" Meaning="CLEAR Movie"/>
+                  <Value Value="4" Meaning="CLEAR Tab Weather"/>
+                  <Value Value="5" Meaning="CLEAR Stocks"/>
+                  <Value Value="6" Meaning="CLEAR Safeview"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="ExternalDiagModeState" FunctionResponse="ONCE" Description="State Of the External diag Mode" Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="TRUE = ON , FALSE = OFF"/>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="ToggleExternalDiagMode" FunctionResponse="ONCE" Description=" Toggle(ON/OFF) between External Diagnosis mode" Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="GetSXMSettingsMenuData" FunctionResponse="ONCE" Description=" To get SXM Settings menu data " Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_UINT"/>
+        <Parameters>
+          <Parameter Name="LineNo" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="Signal Quality:"/>
+                  <Value Value="1" Meaning="Subscription SXM Audio:"/>
+                  <Value Value="2" Meaning="Subscription SXM Traffic:"/>
+                  <Value Value="3" Meaning="Subscription SXM Travellink:"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="TriggerNavSamplePrompt" FunctionResponse="ONCE" Description="Triggers the Navigation Sample voice prompt" Comment="NISSAN LCN2KAI">
+         <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="GetSXMRadioID" FunctionResponse="ONCE" Description="returns SXM radio ID" Comment="B2">
+        <ReturnValue ReturnType="DATA_TYPE_STRING" Description="" Comment=""/>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="StartMethodforUPCLID" FunctionResponse="ONCE" Description="initiates method start for obtaining SXM UPC LID" Comment="NISSAN LCN NAR NET#2 Sample">
+        <ReturnValue ReturnType="DATA_TYPE_VOID"/>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="WaitSyncforSXMDiag" FunctionResponse="ONCE" Description="Whether to wait for information or not." Comment="NISSAN2.0">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="TRUE = Proceed, FALSE = Wait."/>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="GetSXMSTMDataParam1" FunctionResponse="ONCE" Description=" To get SXM STM data " Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_UINT"/>
+        <Parameters>
+          <Parameter Name="LineNo" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="1" Meaning="Antenna Status: "/>
+                  <Value Value="2" Meaning="Signal Quality:"/>
+                  <Value Value="5" Meaning="SXM Audio:"/>
+                  <Value Value="6" Meaning="SXM Traffic"/>
+                  <Value Value="7" Meaning="SXM Travellink:"/>
+                  <Value Value="8" Meaning="Module Subscription:"/>
+                  <Value Value="10" Meaning="SXM Travellink Channel Art:"/>
+                  <Value Value="11" Meaning="SXM Travellink Movies:"/>
+                  <Value Value="12" Meaning="SXM Travellink AGW:"/>
+                  <Value Value="13" Meaning="SXM Travellink Tab Weather:"/>
+                  <Value Value="14" Meaning="SXM Travellink Fuel:"/>
+                  <Value Value="15" Meaning="SXM Travellink Stocks:"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="GetSXMSTMDataParam2" FunctionResponse="ONCE" Description=" To get SXM STM data " Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_STRING"/>
+        <Parameters>
+          <Parameter Name="LineNo" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="3" Meaning="UPC LID 0:"/>
+                  <Value Value="4" Meaning="UPC LID 1:"/>
+                  <Value Value="9" Meaning="Module Suspend date:"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+        </Parameters>
+      </DeviceFunction>
+      <DeviceFunction FunctionName="GetSxmDTMPopupStatus" FunctionResponse="ONCE" Description="SXM DTM popup status" Comment="NISSAN2.0">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="TRUE = ON, FALSE = OFF."/>
+      </DeviceFunction>
+	  
+    <!--New API's for ITG5 -->
+	
+    <DeviceFunction FunctionName="GetTouchCordinate" FunctionResponse="ONCE" Description=" To get Coordinate for touching " Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_UINT"/>
+        <Parameters>
+			<Parameter Name="X_Y_Coordinate" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="X or Y Coordinate">
+				<ParameterDescription>
+				  <ValueRange>
+					<Enumeration>
+					  <Value Value="0" Meaning="X"/>
+					  <Value Value="1" Meaning="Y"/>					 
+					</Enumeration>
+				  </ValueRange>
+				</ParameterDescription>
+			</Parameter>
+			<Parameter Name="Row" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="What row data has to be displayed?">
+				<ParameterDescription>
+				  <ValueRange>
+					<Enumeration>
+					  <Value Value="0" Meaning="First"/>
+					  <Value Value="1" Meaning="Second"/>
+					  <Value Value="2" Meaning="Third"/>
+					  <Value Value="3" Meaning="Fourth"/>
+					  <Value Value="4" Meaning="Fifth"/>
+					</Enumeration>
+				  </ValueRange>
+				</ParameterDescription>
+			</Parameter>
+		</Parameters>
+    </DeviceFunction>
+	
+	<DeviceFunction FunctionName="IsANCASCSetting" FunctionResponse="ONCE" Description="ANC_ASC setting status" Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="Returns ANC_ASC setting visibility; 1 - visible 0 - not visible"/>        		
+    </DeviceFunction>
+	
+	<DeviceFunction FunctionName="GetStatusANCASCSetting" FunctionResponse="ONCE" Description="Status ANC/ASC Setting status" Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="Returns ANC_ASC Setting Ststus; 1 - enable; 0 - disable"/>        		
+    </DeviceFunction>
+	  
+    <DeviceFunction FunctionName="GetANCASCConnection" FunctionResponse="ONCE" Description="To get ANC ASC connection " Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_UINT"/>
+        <Parameters>
+			<Parameter Name="ConnectionType" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="Microphone1"/>
+                  <Value Value="1" Meaning="Microphone2"/>
+                  <Value Value="2" Meaning="Microphone3"/>
+                  <Value Value="3" Meaning="Microphone4"/>
+                  <Value Value="4" Meaning="Tacho"/>
+                  <Value Value="5" Meaning="DoorOpenSignal"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+		</Parameters>
+      </DeviceFunction>
+	
+	<DeviceFunction FunctionName="IsANCASCActive" FunctionResponse="ONCE" Description="ANC_ASC status " Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description ="Returns ANC_ASC active; 1 - active, 0 - not active"/>
+        <Parameters>
+			<Parameter Name="ANC_ASC" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="ANC or ASC">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="ANC"/>
+                  <Value Value="1" Meaning="ASC"/>                 
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+		</Parameters>
+    </DeviceFunction>
+	
+	<DeviceFunction FunctionName="GetANCASCSetting" FunctionResponse="ONCE" Description="Get ANC_ASC Setting " Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_STRING" Description ="Returns ANC_ASC version or config result"/>
+        <Parameters>
+			<Parameter Name="ANC_ASC" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="ANC or ASC">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="ANC Software version"/>
+                  <Value Value="1" Meaning="ASC Software version"/>                 
+				  <Value Value="2" Meaning="Config result"/>
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+		</Parameters>
+    </DeviceFunction>	
+	
+	<DeviceFunction FunctionName="GetANCASCVisibility" FunctionResponse="ONCE" Description="Get ANC_ASC Visibility" Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_BOOL" Description ="Returns ANC_ASC visible"/>
+        <Parameters>
+			<Parameter Name="ANC_ASC" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="ANC or ASC">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="ANC"/>
+                  <Value Value="1" Meaning="ASC"/>                 
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+		</Parameters>
+    </DeviceFunction>
+	
+	<DeviceFunction FunctionName="ANCASCTestStatus" FunctionResponse="ONCE" Description="Get Event on finishing the test" Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_VOID" Description ="Event on finishing the test HSA_EVENT_ANC_ASC_ACTIVE_TEST"/>
+        <Parameters>
+			<Parameter Name="StartStop" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Stop or start">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="Stop"/>
+                  <Value Value="1" Meaning="Start"/>                 
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+		</Parameters>
+    </DeviceFunction>
+	
+	<DeviceFunction FunctionName="BoseSpeakerTestStatus" FunctionResponse="ONCE" Description="Get Bose Speaker Test Status" Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_VOID" Description =""/>
+        <Parameters>
+			<Parameter Name="StartStop" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Stop or start">
+            <ParameterDescription>
+              <ValueRange>
+                <Enumeration>
+                  <Value Value="0" Meaning="Stop"/>
+                  <Value Value="1" Meaning="Start"/>                 
+                </Enumeration>
+              </ValueRange>
+            </ParameterDescription>
+          </Parameter>
+		</Parameters>
+    </DeviceFunction>
+	
+	<DeviceFunction FunctionName="GetCurrentSpeaker" FunctionResponse="ONCE" Description="Get Current Speaker" Comment="NISSAN">
+        <ReturnValue ReturnType="DATA_TYPE_UINT" Description =""/>        
+    </DeviceFunction>
+    </DeviceFunctions>  
+</SubDevice>

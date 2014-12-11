@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Datapool xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\XSD\Datapool.xsd" Name="SYSTEM">
+    <Version Schema="1.0" Nummer="" Shell="1.06.0222" User="sha4kor"/>
+    <Element Name="STARTUP_AFTER_FGS_RESET" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="DDSEVENT_FOCUS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="DDSEVENT_LOCKED" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="LASTMAINCONTEXT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="ACOUSTICFEEDBACK" Size="tU32" defaultVal="0x1" dpType="dptU32" Persist="True" Repeat="1" Event="GUI_DPSYSTEM__ACOUSTICFEEDBACK">
+        <Description>setting for acoustic touchscreen feedback</Description>
+    </Element>
+    <Element Name="DISTANCEUNIT" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>defines which distance units (metric, imperial) to use</Description>
+    </Element>
+    <Element Name="SPELLER_LAYOUT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Stores the value of current speller layout</Description>
+    </Element>
+    <Element Name="DUR_STATE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>keeps persistent state of the Data update Reminder state machine</Description>
+    </Element>
+    <Element Name="DUR_COUNT_OF_STARTS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>keeps count of starts persistently for the Data Update Reminder</Description>
+    </Element>
+    <Element Name="BEEPMODE" Size="tU32" defaultVal="0x0" dpType="dptU32" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="ENCODER_DIRN" Size="tBool" defaultVal="false" dpType="dptBool" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>To store the direction of encoder 0-Left, 1-Right</Description>
+    </Element>
+    <Element Name="DUR_NAVI_DATASET_ID" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>To save the dataset id of the SD card.. when new sd card is inserted this id will be checked to set the time for data update reminder popup.</Description>
+    </Element>
+    <Element Name="DUR_BASE_SCALAR_DATETIMEVALUE" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>To store the start time for data update reminder popup</Description>
+    </Element>
+    <Element Name="DUR_START_DATE" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>to disable the popup after 7 year from this date.</Description>
+    </Element>
+    <Element Name="XML_VERSIONCHECK_STATUS" Size="tU8" defaultVal="0xFF" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_DPSYSTEM__XMLVERSIONCHECK">
+        <Description>holds the status of the last version check of Arion and FGS xml verison string</Description>
+    </Element>
+    <Element Name="SHOW_PRESET_MENU" Size="tBool" defaultVal="false" dpType="dptBool" Persist="True" Repeat="1" Event="HMI_SETUP_PRESET_MENU">
+        <Description>this variable is reqd to set the state from HMI</Description>
+    </Element>
+  <Element Name="LANGUAGE_FLAG" Size="tBool" defaultVal="true" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+    <Description>This flag will distinguish the first start up scenario</Description>
+  </Element>
+    <Element Name="METER" Size="24" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>DP related to Meter component(instrument cluster)</Description>
+        <Element Name="AUDIO_WRN_EVENT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Used for Popup event reason</Description>
+        </Element>
+        <Element Name="AUDIO_WRN_TEXT" Size="tChar" defaultVal="0x00" dpType="dptChar" Persist="False" Repeat="255" Event="0XFFFFFFFF">
+            <Description>Popup text dispalyed in HU is sent to Meter</Description>
+        </Element>
+        <Element Name="SDS_STATE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>This shall be set when ever SDS(Voice recognition) is in Active Mode</Description>
+        </Element>
+        <Element Name="CONNECTION_STATUS" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="HMI_METER_CONNECTION_STATUS">
+            <Description>Status whether Meter is connected or Not</Description>
+        </Element>
+        <Element Name="SW_AUDIO_UPPERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SW_AUDIO_MIDVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SW_AUDIO_LOWERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SW_NAVI_UPPERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SW_NAVI_MIDVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SW_NAVI_LOWERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SW_SWC_UPPERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SW_SWC_MIDVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="SW_SWC_LOWERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HW_AUDIO_UPPERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HW_AUDIO_MIDVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HW_AUDIO_LOWERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HW_NAVI_UPPERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HW_NAVI_MIDVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HW_NAVI_LOWERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HW_SWC_UPPERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HW_SWC_MIDVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="HW_SWC_LOWERVERSION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TIME_INFO_HOURS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Holds the current hour which is to be given to Meter component.</Description>
+        </Element>
+        <Element Name="TIME_INFO_MINUTES" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Holds the current minutes which is to be given to Meter component.</Description>
+        </Element>
+    </Element>
+    <Element Name="VARIANT_CONFIG" Size="87" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>Contains the datapools for all configurations</Description>
+        <Element Name="RADIO_DAB" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether DAB is enabled or disabled</Description>
+        </Element>
+        <Element Name="RADIO_XM" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether XM is enabled or disabled</Description>
+        </Element>
+        <Element Name="RADIO_FM_START_FRQ" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Stores minimum frequency value for FM</Description>
+        </Element>
+        <Element Name="RADIO_FM_END_FRQ" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Stores maximum frequency value for FM</Description>
+        </Element>
+        <Element Name="RADIO_FM_STEP_SIZE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Stores step size value for FM</Description>
+        </Element>
+        <Element Name="RADIO_AM_START_FRQ" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Stores minimum frequency value for AM</Description>
+        </Element>
+        <Element Name="RADIO_AM_END_FRQ" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Stores maximum frequency value for AM</Description>
+        </Element>
+        <Element Name="RADIO_AM_STEP_SIZE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Stores step size value for AM</Description>
+        </Element>
+        <Element Name="RADIO_FM_NUM_BANKS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>No. of banks for FM</Description>
+        </Element>
+        <Element Name="NAVIGATION_DESTINATION_ENTRY_TYPE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether destination entry is Europe or NAR</Description>
+        </Element>
+        <Element Name="NAVIGATION_DISCLAIMER" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether enabled or disabled</Description>
+        </Element>
+        <Element Name="NAVIGATION_MAP_ZOOM_TYPE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether it is touch type or encoder type</Description>
+        </Element>
+        <Element Name="NAVIGATION_POI_WARNING_TYPE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether the POI warning is Popup type or Map type</Description>
+        </Element>
+        <Element Name="TRAFFIC_TMC_SERVER" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether the TMC server is XM, DAB or amfm_tuner</Description>
+        </Element>
+        <Element Name="TELE_SMS_GUI_HANDLING" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether SMS through GUI handling is enabled or disabled</Description>
+        </Element>
+        <Element Name="TELE_SMS_VR" Size="tBool" defaultVal="true" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether SMS through voice recognition is enabled or disabled</Description>
+        </Element>
+        <Element Name="SYSTEM_NISSAN_REG_TYPE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Gives PI Ignore is Enabled or Not</Description>
+        </Element>
+        <Element Name="SYSTEM_SPEED_LOCK" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether speedlock is enabled or disabled</Description>
+        </Element>
+        <Element Name="SYSTEM_ENCODER_PRESS_SOUND" Size="tBool" defaultVal="true" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicated whether enabled or disabled</Description>
+        </Element>
+        <Element Name="SYSTEM_ECO_FEEDBACK" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether enabled or disabled</Description>
+        </Element>
+        <Element Name="RADIO_FM_NUM_PRESETS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>No. of presets per FM bank</Description>
+        </Element>
+        <Element Name="RADIO_AM_NUM_BANKS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>No. of banks for AM</Description>
+        </Element>
+        <Element Name="RADIO_AM_NUM_PRESETS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>No. of presets in AM bank</Description>
+        </Element>
+        <Element Name="RADIO_STATION_LIST" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether station list is enabled or disabled</Description>
+        </Element>
+        <Element Name="RADIO_TA_TP" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether TA/TP is enabled or disabled</Description>
+        </Element>
+        <Element Name="RADIO_REG" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether REG is enabled or disabled</Description>
+        </Element>
+        <Element Name="RADIO_PS_FRQ" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether Frequency or PS will be displayed or both will be displayed</Description>
+        </Element>
+        <Element Name="SYSTEM_CLOCK" Size="tBool" defaultVal="true" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether clock should be shown or not</Description>
+        </Element>
+        <Element Name="SYSTEM_ANTITHEFT" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether antitheft is enabled or disabled</Description>
+        </Element>
+        <Element Name="SYSTEM_STEERING" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether steering is left hand or right hand (Steering Position)</Description>
+        </Element>
+        <Element Name="SYSTEM_VR" Size="tBool" defaultVal="true" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether voice recognition is enabled or disabled</Description>
+        </Element>
+        <Element Name="RADIO_AREA" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Stores the Tuner Area</Description>
+        </Element>
+        <Element Name="NAVIGATION_DEFAULT_LANGUAGE_TYPE" Size="tU8" defaultVal="0xff" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Default laguge for each region type</Description>
+        </Element>
+        <Element Name="SYSTEM_STEERING_WHEEL" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Datapool to store the Steering wheel type</Description>
+        </Element>
+        <Element Name="RADIO_SEEK_MODE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Datapool to store the Seek mode configuration</Description>
+        </Element>
+        <Element Name="SYSTEM_WEATHER_SRC" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>It stores the source of weather information</Description>
+        </Element>
+        <Element Name="SYSTEM_TELEMATICS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Datapool to store telematics configuration</Description>
+        </Element>
+        <Element Name="RADIO_TUNER_MODE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Datapool to store the tuner mode</Description>
+        </Element>
+        <Element Name="SYSTEM_DISTANCE_UNIT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Datapool to store Distance Unit configuration</Description>
+        </Element>
+        <Element Name="NAVIGATION_EV" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Datapool to store the electro vehicle configuration</Description>
+        </Element>
+        <Element Name="ECOROUTE_TRANSMISSION_TYPE" Size="tS8" defaultVal="0" dpType="dptS8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Transmission type shall be one of the parameters to be used in the calculation of the fuel consumption optimized route.</Description>
+        </Element>
+        <Element Name="ECOROUTE_DRAG_COEFFICIENT" Size="tS8" defaultVal="0X20" dpType="dptS8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>The drag coefficient (CW value) shall be one of the parameters to be used in the calculation of the fuel consumption optimized route.</Description>
+        </Element>
+        <Element Name="ECOROUTE_FUEL_TYPE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Type of fuet used for car - Petrol/Disel</Description>
+        </Element>
+        <Element Name="SYSTEM_VEHICLE_TYPE" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Vehicle type (e.g. X12B)</Description>
+        </Element>
+        <Element Name="SMART_PHONE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>to enable/disable Smart phone..</Description>
+        </Element>
+        <Element Name="SIRI_AVAILABILITY" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+          <Description>to enable/disable SIRI..</Description>
+        </Element>
+        <Element Name="VA_AVAILABILITY" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+          <Description>to enable/disable VA..</Description>
+        </Element>
+        <Element Name="CM_DISPLAY_TYPE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>provides information which type of display is configured (ex. 5,8" / 7" / 8")</Description>
+        </Element>
+        <Element Name="TRAFFIC_TMC_SERVER_FM" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether the TMC server is amfm_tuner</Description>
+        </Element>
+        <Element Name="TRAFFIC_TMC_SERVER_DAB" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether the TMC server is DAB</Description>
+        </Element>
+        <Element Name="TRAFFIC_TMC_SERVER_XM" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Indicates whether the TMC server is XM</Description>
+        </Element>
+        <Element Name="DAB_AVAILABILITY" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>The value is located in System Configuration 1, Byte 43, Bit 0.
+The purpose is to provide a possibility to disable/enable DAB by Nissan diagnostics configuration within a DAB device.</Description>
+        </Element>
+        <Element Name="SYSTEM_OPENING_ANIMATION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Gives us the Opening Animation value: NISSAN and Renault</Description>
+        </Element>
+        <Element Name="SYSTEM_ISA" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Indicates ISA status (external speed limit detection camera availbility)</Description>
+        </Element>
+        <Element Name="RADIO_PI_IGNORE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="NAVIGATION_MINIMIZE_UNPAVED_ROADS" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>DP to store Minimize Unpaved Roads in Navigation Route Option.               0 ---- OFF           1 ---- ON</Description>
+        </Element>
+        <Element Name="POSITIONING_SYSTEM" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 : GPS   1 : GLONASS</Description>
+        </Element>
+        <Element Name="HEV" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 - HEV disabled 1- HEV Enabled</Description>
+        </Element>
+        <Element Name="HEV_DRIVETYPE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Gives the Drive type of the HEV vehicle : 4 Wheel Drive, Front Engine, Rear Engine, etc</Description>
+        </Element>
+        <Element Name="HEV_BODY_SHAPE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="TCU" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="VEHICLE_BODY_SHAPE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>GIves information about body shape of  vehicle  ex- sedan,coupe,wagon,van</Description>
+        </Element>
+        <Element Name="REGION_ITG5" Size="tU32" defaultVal="0x000000" dpType="dptU32" Persist="False" Repeat="1" Event="DPSYSTEM_VARIANT_CONFIG">
+            <Description>Gives information about region - US,CAN,EUR,THI etc</Description>
+        </Element>
+        <Element Name="METER_CLOCK_SYNCHRONISATION" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Gives information about whether or not meter and clock are synchronised .</Description>
+        </Element>
+        <Element Name="STEERING_SW_ITG5" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Gives information about steering wheel type.</Description>
+        </Element>
+        <Element Name="TPMS_FUNCTION" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Gives information about tpms function 00 = off,01 = on without ER regulation, 10 = ON (with EUR Regulation)
+11 = OFF (with V-CAN Communication )</Description>
+        </Element>
+        <Element Name="HVAC_TYPE" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>000 = None
+001 = 06IT single temp with no operation
+010 = 06IT dual temp with no operation
+011 = 08IT dual temp with operation
+100 = 08IT dual temp with no operation
+101 = IT Gen5 Type
+110 = IT-Gen5 GD1A type
+111 = Reserved</Description>
+        </Element>
+        <Element Name="METER_COMBI_UNIT_SETTING" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>00 = No combination
+01 = Reserve
+10 = Setting Unit from Meter (ITM don't have unit setting)
+11 =  Setting Unit from ITM</Description>
+        </Element>
+        <Element Name="DRIVER_ASSISTANCE_FUNCTION" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 = OFF
+1 = ON</Description>
+        </Element>
+        <Element Name="AVERAGE_FUEL_CONSUMPTION_DISPLAY" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>000 = OFF
+001 = Bar graph (ITM calcurates)
+010 = Numeric number (ITM calcurates)
+011 = Bar graph from V-CAN
+100 = Numeric number from V-CAN
+101 to 111 = Reserved</Description>
+        </Element>
+        <Element Name="METER_COMBI_LANGUGAE_SETTING" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 = No combination
+1 = Combination</Description>
+        </Element>
+        <Element Name="BACKGROUND_COLOUR" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>'0 = Infiniti
+1 = Nissan</Description>
+        </Element>
+        <Element Name="DATE_INFORMATION" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>"0 = with
+ date
+1 = without date"</Description>
+        </Element>
+        <Element Name="NAVI" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 = With Navi
+1 = Without Navi</Description>
+        </Element>
+        <Element Name="TCU2" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>00 = Without TCU2
+01 = With TCU2 (Only eCall)
+10 = With TCU2 (full service)
+11 = Reserved</Description>
+        </Element>
+        <Element Name="CAMERA_SYSTEM_ANTICIPATORY_LINE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 = None
+1 = Anticipatory line</Description>
+        </Element>
+        <Element Name="CAMERA_SYSTEM_RVC_GUIDELINE" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>gives information about RVC guideline ex : [0xB2] H61B RHD</Description>
+        </Element>
+        <Element Name="CAMERA_SYSTEM" Size="tU16" defaultVal="0x0000" dpType="dptU16" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>000 = None
+001= Entry AVM
+010 = Rear camera
+011 = Rear + Side camera
+100 = AVM
+101 = Rear camera - Tailgate
+110=AVM+IPA
+111=AVM Phase3</Description>
+        </Element>
+        <Element Name="RSE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Waiting for a meaningful text ...</Description>
+        </Element>
+        <Element Name="AUDIO_PILOT" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF"/>
+        <Element Name="BCM_TYPE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 = type3
+1 = type2</Description>
+        </Element>
+        <Element Name="VEHICLE_CONFIGUARTION" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 = None
+1 = communication</Description>
+        </Element>
+        <Element Name="FUEL_CONSUMPTION_INFORMATION" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 = OFF
+1 = ON</Description>
+        </Element>
+        <Element Name="HD_RADIO_AVAILABILITY" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>0 -Non availability
+1 - available</Description>
+        </Element>
+        <Element Name="ITG5_AMPLIFIER" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>[0x00] 5.1ch AMP(M-CAN BOSE)
+ [0x01] 4ch AMP (Non M-CAN BOSE) 
+[0x02] No external AMP 
+[0x03] 2ch (M-CAN BOSE)</Description>
+        </Element>
+        <Element Name="NISSAN_DRIVING_TYPE" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>2 Bit [0x00] front [0x01] rear [0x02] 4WD</Description>
+        </Element>
+        <Element Name="OFFROAD_INFORMATION" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>O- Disabled
+1 - Enabled</Description>
+        </Element>
+    </Element>
+    <Element Name="VIDEO_DIMMING" Size="4" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>Waiting for a meaningful text ...</Description>
+        <Element Name="BRIGHTNESS" Size="tU8" defaultVal="0x3c" dpType="dptU8" Persist="True" Repeat="1" Event="GUI_HMI_VIDEO_DIMMING">
+            <Description>Holds the brightness value of the Video screen</Description>
+        </Element>
+        <Element Name="CONTRAST" Size="tU8" defaultVal="0x2A" dpType="dptU8" Persist="True" Repeat="1" Event="GUI_HMI_VIDEO_DIMMING">
+            <Description>Holds the contrast value of the Video screen.</Description>
+        </Element>
+        <Element Name="COLOR" Size="tU8" defaultVal="0x32" dpType="dptU8" Persist="True" Repeat="1" Event="GUI_HMI_VIDEO_DIMMING">
+            <Description>Holds the color value of the Video screen</Description>
+        </Element>
+        <Element Name="HUE" Size="tU8" defaultVal="0x32" dpType="dptU8" Persist="True" Repeat="1" Event="GUI_HMI_VIDEO_DIMMING">
+            <Description>Holds the hue value of the Video screen</Description>
+        </Element>
+    </Element>
+    <Element Name="REQ_MODE_AM_PM" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="HMI_GET_TIME_MODE">
+        <Description>Waiting for a meaningful text ...</Description>
+    </Element>
+    <Element Name="OVER_SPEED_ACTIVE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="OVER_SPEED_INDICATION">
+        <Description>Indicates whether actual speed is above the speed limit</Description>
+    </Element>
+    <Element Name="CLOCK_SCREEN_MODE" Size="tBool" defaultVal="false" dpType="dptBool" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Datapool to store whether Clock screen-saver is enabled or disabled</Description>
+    </Element>
+    <Element Name="SCREEN_LOCK_COUNTER" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Holds the screen lock counter value</Description>
+    </Element>
+    <Element Name="CALIBRATION" Size="3" dpType="dptStruct" Persist="False" Repeat="1" Event="0xFFFFFFFF">
+        <Description>Datapools for the screen calibration in developer testmode</Description>
+        <Element Name="PAGE_NUMBER" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="GUI_DPSYSTEM__CALIBRATION_PAGE_NUMBER">
+            <Description>Datapool to store the page number of the calibration screen</Description>
+        </Element>
+        <Element Name="STATUS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>Datapool to store the calibration status</Description>
+        </Element>
+        <Element Name="CALIBRATION_SOURCE" Size="tBool" defaultVal="true" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
+            <Description>The datapool has the source of calibration</Description>
+        </Element>
+    </Element>
+    <Element Name="AUTO_MODE_METER" Size="tBool" defaultVal="false" dpType="dptBool" Persist="True" Repeat="1" Event="0XFFFFFFFF">
+        <Description>Has the status of whether the user has selected the automatic mode.</Description>
+    </Element>
+    <Element Name="ENABLE_DISABLE_AUTO_BUTTON" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="GUI_ENABLE_DISABLE_AUTO_BUTTON">
+        <Description>This datapool tells whether to enable or disable the Automatic button in the Language Menu .</Description>
+    </Element>
+</Datapool>
