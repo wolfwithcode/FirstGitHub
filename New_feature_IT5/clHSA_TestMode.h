@@ -95,7 +95,11 @@ enum VERSION_ID
    EN_APPS_NUMBER=19,
    EN_MCAN_TCU=20,
    EN_SYSTEM_VERSION=21,
-   EN_SDCARD_VERSION=22
+   EN_SDCARD_VERSION=22,
+   EN_HDRADIO_VERSION=23,
+   EN_MCAN_INT_SWITCH_VERSION=24,
+   EN_MCAN_INT_REAR_SWITCH_VERSION=25,
+   EN_MCAN_RSE_VERSION=26
 };
 
 enum StreamInfo
@@ -872,6 +876,10 @@ public:
    virtual void vGetTunerAFListIndex(GUI_String *out_result,ulword Index);
 
    virtual void vGetTunerFrequency(GUI_String *out_result,ulword Tuner);
+
+   virtual void vGetProgramID(GUI_String *out_result,ulword Tuner);
+
+   virtual void vGetCdNo(GUI_String *out_result,ulword Tuner);
 
    virtual ulword ulwGetTunerFS(ulword Tuner);
 

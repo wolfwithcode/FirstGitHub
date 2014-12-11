@@ -32,6 +32,13 @@
 //To include Trace Defines
 #include "fiTPEG/HSI_TPEG_TRACE.h"
 
+#ifdef VARIANT_S_FTR_ENABLE_HMI_EXTSYS_ITG5
+#ifdef VARIANT_S_FTR_ENABLE_TRC_GEN
+#define ETG_DEFAULT_TRACE_CLASS TR_CLASS_HMI_HSA_SYSTEM_CONFIG
+#include "trcGenProj/Header/clHSA_Config.cpp.trc.h"
+#endif
+#endif //VARIANT_S_FTR_ENABLE_HMI_EXTSYS_ITG5
+
 //static variables initialization
 clFi_TPEG* clFi_TPEG::pclInstance = NULL;
 tU16 clFi_TPEG::u16InstanceCnt = 0;
@@ -176,6 +183,8 @@ tVoid clFi_TPEG::vGetHandlerData( tU16 u16Handler,      tVoid** pHandler,
     case EN_TPEG_SERVICE_HANDLER:
        {
 		   /* fill all the details in the Parameterd pointers */
+    	   //Currently this service is not used. So we can disable this via #ifdef.
+			#ifdef VARIANT_S_FTR_ENABLE_HMI_TUNER_ITG5
            *pHandler         = poclTPEG_CCAhandler;
            *u16ServiceID     = CCA_C_U16_SRV_FC_TPEG; //TPEG Service Id
            *u16ServerAppId   = CCA_C_U16_APP_FC_TPEG; //DAB App Id
@@ -194,6 +203,7 @@ tVoid clFi_TPEG::vGetHandlerData( tU16 u16Handler,      tVoid** pHandler,
 				                       *u16MajorVersion,
 				                       *u16MinorVersion);
 		   }
+			#endif
            break;
        } 
     default:

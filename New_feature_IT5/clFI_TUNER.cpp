@@ -1594,6 +1594,11 @@ tVoid clFi_TUNER::ReceiveEventsFromEvtEn(tU32 u32Event)
           poclTuner_CCAhandler->vHandleFID_TUN_BAND_CHANGE_To_FCTuner();
         }
         break;*/
+        case HSI__TUN__FEATURE_HD_TEST_MODE_DATA:
+		{
+		  poclTuner_CCAhandler->vHandleFID_TUN_GET_HD_TEST_MODE_DATA();
+		}
+		break;
 
          
       default :  // unkown event

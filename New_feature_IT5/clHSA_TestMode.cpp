@@ -3663,6 +3663,128 @@ void clHSA_TestMode::vGetVersion(GUI_String *out_result,ulword Version)
 
          //break;
          // }*/
+
+	  case EN_HDRADIO_VERSION:
+	  {
+		 /* if(m_poDataPool)
+		  {
+			  u32Size   = m_poDataPool->u32dp_getElementSize(.....);
+			  OSAL_pvMemorySet((tVoid*)pacText,NULL,MAX_LEN_FOR_VERSION);
+
+			  m_poDataPool->u32dp_get(....,
+					  (tVoid*)pacText,
+					   u32Size	);
+		  }
+
+          //Return the Customer version
+		 GUI_String_vSetCStr(out_result, (tU8*)pacText);
+		  */
+          break;
+	  }
+
+	  case EN_MCAN_INT_SWITCH_VERSION:
+	  {
+          /*
+		  tU8 u8SW_Version_Lower = 0;
+          tU8 u8SW_Version_Mid = 0;
+          tU8 u8SW_Version_Upper = 0;
+          tU8 u8HW_Version_Lower = 0;
+          tU8 u8HW_Version_Mid = 0;
+          tU8 u8HW_Version_Upper = 0;
+
+          if(m_poDataPool)
+          {
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Upper,
+        			  sizeof(u8SW_Version_Upper));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Mid,
+        			  sizeof(u8SW_Version_Mid));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Lower,
+        			  sizeof(u8SW_Version_Lower));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Upper,
+        			  sizeof(u8HW_Version_Upper));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Mid,
+        			  sizeof(u8HW_Version_Mid));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Lower,
+        			  sizeof(u8HW_Version_Lower));
+          }
+
+          UTF8_s32SaveNPrintFormat( pacText,MAX_GPS_FORMAT_STRLEN,"%u.%u.%u/%u.%u.%u",
+             u8HW_Version_Upper, u8HW_Version_Mid, u8HW_Version_Lower,
+             u8SW_Version_Upper, u8SW_Version_Mid, u8SW_Version_Lower);
+
+          //Return the Customer version
+		  GUI_String_vSetCStr(out_result, (tU8*)pacText);
+	*/
+          break;
+	  }
+
+	  case EN_MCAN_INT_REAR_SWITCH_VERSION:
+	  {
+          /*
+		  tU8 u8SW_Version_Lower = 0;
+          tU8 u8SW_Version_Mid = 0;
+          tU8 u8SW_Version_Upper = 0;
+          tU8 u8HW_Version_Lower = 0;
+          tU8 u8HW_Version_Mid = 0;
+          tU8 u8HW_Version_Upper = 0;
+
+          if(m_poDataPool)
+          {
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Upper,
+        			  sizeof(u8SW_Version_Upper));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Mid,
+        			  sizeof(u8SW_Version_Mid));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8SW_Version_Lower,
+        			  sizeof(u8SW_Version_Lower));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Upper,
+        			  sizeof(u8HW_Version_Upper));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Mid,
+        			  sizeof(u8HW_Version_Mid));
+        	  m_poDataPool->u32dp_get(......,
+        			  &u8HW_Version_Lower,
+        			  sizeof(u8HW_Version_Lower));
+          }
+
+          UTF8_s32SaveNPrintFormat( pacText,MAX_GPS_FORMAT_STRLEN,"%u.%u.%u/%u.%u.%u",
+             u8HW_Version_Upper, u8HW_Version_Mid, u8HW_Version_Lower,
+             u8SW_Version_Upper, u8SW_Version_Mid, u8SW_Version_Lower);
+
+          //Return the Customer version
+		  GUI_String_vSetCStr(out_result, (tU8*)pacText);
+	*/
+          break;
+	  }
+
+	  case EN_MCAN_RSE_VERSION:
+	  {
+		  /*
+		  if(m_poDataPool)
+		  {
+			  u32Size   = m_poDataPool->u32dp_getElementSize(......);
+			  OSAL_pvMemorySet((tVoid*)pacText,NULL,MAX_LEN_FOR_VERSION);
+
+			  m_poDataPool->u32dp_get(....,
+					  (tVoid*)pacText,
+					   u32Size	);
+		  }
+
+          //Return the Customer version
+		  GUI_String_vSetCStr(out_result, (tU8*)pacText);
+	*/
+          break;
+	  }
+
       default:
          {
             /** At present i cannot see this Version in the OSAL registry
@@ -4111,6 +4233,100 @@ void clHSA_TestMode::vGetTunerFrequency(GUI_String *out_result,ulword Tuner)
 
    // Release the memory Allocated dynamically 
    OSAL_DELETE[] tCharpacText;
+}
+/******************************************************************************
+* FUNCTION:    clHSA_TestMode::vGetProgramID(Tuner)
+*------------------------------------------------------------------------------
+* DESCRIPTION: This API is called by GUI to display Program ID
+*------------------------------------------------------------------------------
+* PARAMETER:   ulword
+* RETURNVALUE: ulword
+******************************************************************************/
+void clHSA_TestMode::vGetProgramID(GUI_String *out_result,ulword Tuner)
+{
+	//extract HD test mode data from server
+   vSendCommandtoHSI(HSI__TUN__FEATURE_HD_TEST_MODE_DATA);
+
+
+   tU32 u32ProgramIDValue = 0;
+   tUTF8 utf8Data[MAX_NO_OF_CHAR_FM] = "\0";
+   if( NULL != m_poDataPool)
+   {
+      switch(Tuner)
+      {
+      case TUNER_0:
+      case TUNER_1:
+         {
+            m_poDataPool->u32dp_get( DPTUNER__TESTMODE_HD_PRG_ID, &u32ProgramIDValue, sizeof(tU32));
+            break;
+         }
+
+      default:
+         {
+            // Nothing to do Here
+            break;
+         }
+      }
+   }
+
+   UTF8_s32SaveNPrintFormat( utf8Data, MAX_NO_OF_CHAR_FM, "%X", u32ProgramIDValue);
+   GUI_String_vSetCStr(out_result,(tU8*)utf8Data);
+
+   /** Trace is here */
+   if(m_poTrace != NULL)
+   {
+      m_poTrace->vTrace( TR_LEVEL_HMI_INFO,
+         TR_CLASS_HMI_HSA_SYSTEM_TESTMODE,
+         "Program ID send to GUI in Test Mode is %d",
+         u32ProgramIDValue);
+   }
+}
+
+/******************************************************************************
+* FUNCTION:    clHSA_TestMode::vGetCdNo(Tuner)
+*------------------------------------------------------------------------------
+* DESCRIPTION: This API is called by GUI to display CD number
+*------------------------------------------------------------------------------
+* PARAMETER:   ulword
+* RETURNVALUE: ulword
+******************************************************************************/
+void clHSA_TestMode::vGetCdNo(GUI_String *out_result,ulword Tuner)
+{
+	//extract HD test mode data from server
+   vSendCommandtoHSI( HSI__TUN__FEATURE_HD_TEST_MODE_DATA);
+
+   tU8 u8CdNoValue = 0;
+   tUTF8 utf8Data[MAX_NO_OF_CHAR_FM] = "\0";
+   if( NULL != m_poDataPool)
+   {
+      switch(Tuner)
+      {
+      case TUNER_0:
+      case TUNER_1:
+         {
+            m_poDataPool->u32dp_get( DPTUNER__TESTMODE_HD_CD_NO, &u8CdNoValue, sizeof(tU8));
+            break;
+         }
+
+      default:
+         {
+            // Nothing to do Here
+            break;
+         }
+      }
+   }
+
+   UTF8_s32SaveNPrintFormat( utf8Data, MAX_NO_OF_CHAR_FM, "%X", u8CdNoValue);
+   GUI_String_vSetCStr(out_result,(tU8*)utf8Data);
+
+   /** Trace is here */
+   if(m_poTrace != NULL)
+   {
+      m_poTrace->vTrace( TR_LEVEL_HMI_INFO,
+         TR_CLASS_HMI_HSA_SYSTEM_TESTMODE,
+         "CD No send to GUI in Test Mode is %d",
+         u8CdNoValue);
+   }
 }
 
 

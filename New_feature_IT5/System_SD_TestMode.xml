@@ -1902,6 +1902,62 @@
                 </Parameter>
             </Parameters>
         </DeviceFunction>
+        
+        <DeviceFunction FunctionName="IsHDRadioActive" FunctionResponse="ONCE" Description="API for checking the availability of HD Radio." Comment="">
+            <ReturnValue ReturnType="DATA_TYPE_BOOL" Description="Returns the availablity of HD Radio."/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="0 = AM, 1 = FM"/>
+            </Parameters>
+        </DeviceFunction>
+        
+        <DeviceFunction FunctionName="GetTunerCallSign" FunctionResponse="ONCE" Description="Return current Tuner Call Sign" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_STRING" Description=""/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="the type of requested values">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0 (AM)"/>
+                                <Value Value="1" Meaning="Tuner 1 (FM)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        
+          <DeviceFunction FunctionName="GetTunerCDNo" FunctionResponse="ONCE" Description="Returns the CD No for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description=""/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0(AM)"/>
+                                <Value Value="1" Meaning="Tuner 1(FM)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        
+         <DeviceFunction FunctionName="GetTunerHDStationID" FunctionResponse="ONCE" Description="Returns the Station ID for the requested tuner" Comment="B1">
+            <ReturnValue ReturnType="DATA_TYPE_UINT" Description=""/>
+            <Parameters>
+                <Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+                    <ParameterDescription>
+                        <ValueRange>
+                            <Enumeration>
+                                <Value Value="0" Meaning="Tuner 0(AM)"/>
+                                <Value Value="1" Meaning="Tuner 1(FM)"/>
+                            </Enumeration>
+                        </ValueRange>
+                    </ParameterDescription>
+                </Parameter>
+            </Parameters>
+        </DeviceFunction>
+        
         <DeviceFunction FunctionName="GetTunerRDSErrorRate" FunctionResponse="ONCE" Description="Returns RDS error rate for the requested tuner" Comment="B1">
             <ReturnValue ReturnType="DATA_TYPE_UINT" Description="Values: 0-99">
                 <ReturnValueDescription>
@@ -2862,5 +2918,42 @@
 	<DeviceFunction FunctionName="GetCurrentSpeaker" FunctionResponse="ONCE" Description="Get Current Speaker" Comment="NISSAN">
         <ReturnValue ReturnType="DATA_TYPE_UINT" Description =""/>        
     </DeviceFunction>
+    
+    <DeviceFunction FunctionName="GetProgramID" FunctionResponse="ONCE" Description="Returns HD Station ID to GUI" Comment="B1">
+		<ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns HD Station ID "/>
+		<Parameters>
+			<Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+				<ParameterDescription>
+					<ValueRange>
+						<Enumeration>
+							<Value Value="0" Meaning="AM"/>
+							<Value Value="1" Meaning="FM"/>
+							<Value Value="2" Meaning="Unknown"/>
+							<Value Value="3" Meaning="Unknown"/>
+						</Enumeration>
+					</ValueRange>
+				</ParameterDescription>
+			</Parameter>
+		</Parameters>
+	</DeviceFunction>
+	
+	<DeviceFunction FunctionName="GetCdNo" FunctionResponse="ONCE" Description="Returns CD number to GUI" Comment="B1">
+		<ReturnValue ReturnType="DATA_TYPE_STRING" Description="Returns CD number "/>
+		<Parameters>
+			<Parameter Name="Tuner" Type="DATA_TYPE_UINT" Direction="IN" DefaultValue="0" Description="Tuner requested;ValueRange=0-3">
+				<ParameterDescription>
+					<ValueRange>
+						<Enumeration>
+							<Value Value="0" Meaning="AM"/>
+							<Value Value="1" Meaning="FM"/>
+							<Value Value="2" Meaning="Unknown"/>
+							<Value Value="3" Meaning="Unknown"/>
+						</Enumeration>
+					</ValueRange>
+				</ParameterDescription>
+			</Parameter>
+		</Parameters>
+	</DeviceFunction>
+        
     </DeviceFunctions>  
 </SubDevice>
