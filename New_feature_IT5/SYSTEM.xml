@@ -2,7 +2,7 @@
 <Datapool xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\XSD\Datapool.xsd" Name="SYSTEM">
     <Version Schema="1.0" Nummer="" Shell="1.06.0222" User="sha4kor"/>
     <Element Name="STARTUP_AFTER_FGS_RESET" Size="tBool" defaultVal="false" dpType="dptBool" Persist="False" Repeat="1" Event="0XFFFFFFFF">
-        <Description>Waiting for a meaningful text ...</Description>
+        <Description>Waiting for a meaningful text ... Test </Description>
     </Element>
     <Element Name="DDSEVENT_FOCUS" Size="tU8" defaultVal="0x00" dpType="dptU8" Persist="False" Repeat="1" Event="0XFFFFFFFF">
         <Description>Waiting for a meaningful text ...</Description>
